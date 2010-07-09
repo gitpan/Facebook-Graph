@@ -1,0 +1,16 @@
+Changes
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+author.t/private_fetch.txt
+dist.ini
+lib/Facebook/Graph.pm
+lib/Facebook/Graph/AccessToken.pm
+lib/Facebook/Graph/AccessToken/Response.pm
+lib/Facebook/Graph/Authorize.pm
+lib/Facebook/Graph/Role/Uri.pm
+t/02_public_fetch.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t
