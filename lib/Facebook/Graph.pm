@@ -1,11 +1,12 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0100';
+  $Facebook::Graph::VERSION = '0.0200';
 }
 
 use Moose;
 use Facebook::Graph::AccessToken;
 use Facebook::Graph::Authorize;
+use Facebook::Graph::Query;
 with 'Facebook::Graph::Role::Uri';
 use LWP::UserAgent;
 use JSON;
@@ -56,15 +57,24 @@ sub authorize {
 
 sub fetch {
     my ($self, $object_name) = @_;
-    my $url = $self->uri;
-    $url->path($object_name);
+    my $uri = $self->uri;
+    $uri->path($object_name);
     if ($self->has_access_token) {
-        $url->query_form(
+        $uri->query_form(
             access_token    => $self->access_token,  
         );
     }
-    my $content = LWP::UserAgent->new->get($url->as_string)->content;
+    my $content = LWP::UserAgent->new->get($uri->as_string)->content;
     return JSON->new->decode($content);
+}
+
+sub query {
+    my ($self) = @_;
+    my %params;
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    return Facebook::Graph::Query->new(%params);
 }
 
 
@@ -77,11 +87,25 @@ Facebook::Graph - An interface to the Facebook Graph API.
 
 =head1 VERSION
 
-version 0.0100
+version 0.0200
 
 =head1 SYNOPSIS
 
-Getting started:
+ my $fb = Facebook::Graph->new;
+ my $sarah_bownds = $fb->fetch('sarahbownds');
+ my $perl_page = $fb->fetch('16665510298');
+ 
+Or better yet:
+
+ my $sarah_bownds = $fb->query
+    ->find('sarahbownds')
+    ->include_metadata
+    ->select_fields(qw( id name picture ))
+    ->request
+    ->as_hashref;
+ 
+ 
+=head2 Building A Privileged App
 
  my $fb = Facebook::Graph->new(
     app_id          => $facebook_application_id,
@@ -91,12 +115,12 @@ Getting started:
 
 Get the user to authorize your app (only needed if you want to fetch non-public information or publish stuff):
 
- my $url = $fb
+ my $uri = $fb
     ->authorize
     ->add_permissions(qw(offline_access publish_stream))
-    ->to_url;
+    ->uri_as_string;
 
- # redirect the user's browser to $url
+ # redirect the user's browser to $uri
 
 Handle the Facebook authorization code postback:
 
@@ -107,19 +131,20 @@ Or if you already had the access token:
 
  $fb->set_access_token($token);
  
-Or you can go without an access token and just get public information.
-
 Get some info:
 
  my $user = $fb->fetch('me');
  my $friends = $fb->fetch('me/friends');
- my $sarah_bownds = $fb->fetch('sarahbownds);
+ my $sarah_bownds = $fb->fetch('sarahbownds');
 
 =head1 DESCRIPTION
 
 This is a Perl interface to the Facebook Graph API L<http://developers.facebook.com/docs/api>.
 
 B<WARNING:> This module is experimental at best. The work on it has only just begun because the Graph API itself isn't very new. Therefore things are subject to change drastically with each release, and it may fail to work entirely.
+
+
+
 
 =head1 TODO
 
@@ -130,7 +155,7 @@ Basically everything. It has hardly any tests, very little documentation, and ve
 
 See the SYNOPSIS for the time being.
 
-B<NOTE:> The C<fetch> method will likely go away and be replaced by individual object types. I just needed something quick and dirty for the time being to see that it works.
+B<NOTE:> The C<fetch> method is quick and dirty. Consider using C<query> (L<Facebook::Graph::Query>) instead.
 
 =head1 PREREQS
 
@@ -146,11 +171,11 @@ L<Crypt::SSLeay>
 
 =item Repository
 
-L<http://github.com/plainblack/Facebook-Graph>
+L<http://github.com/rizen/Facebook-Graph>
 
 =item Bug Reports
 
-L<http://github.com/plainblack/Facebook-Graph/issues>
+L<http://github.com/rizen/Facebook-Graph/issues>
 
 =back
 

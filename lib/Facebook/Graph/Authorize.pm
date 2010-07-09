@@ -1,6 +1,6 @@
 package Facebook::Graph::Authorize;
 BEGIN {
-  $Facebook::Graph::Authorize::VERSION = '0.0100';
+  $Facebook::Graph::Authorize::VERSION = '0.0200';
 }
 
 use Moose;
@@ -17,8 +17,10 @@ has postback => (
 );
 
 has permissions => (
-    is      => 'rw',
-    default => sub { [] },
+    is          => 'rw',
+    lazy        => 1,
+    predicate   => 'has_permissions',
+    default     => sub { [] },
 );
 
 has display => (
@@ -38,17 +40,20 @@ sub set_display {
     return $self;
 }
 
-sub to_url {
+sub uri_as_string {
     my ($self) = @_;
-    return $self->uri
-        ->path('oauth/authorize')
-        ->query_form(
-            client_id       => $self->app_id,
-            redirect_uri    => $self->postback,
-            scope           => join(',', @{$self->permissions}),
-            display         => $self->display,
-        )
-        ->as_string;
+    my $uri = $self->uri;
+    $uri->path('oauth/authorize');
+    my %query = (
+        client_id       => $self->app_id,
+        redirect_uri    => $self->postback,
+        display         => $self->display,
+    );
+    if ($self->has_permissions) {
+        $query{scope} = join(',', @{$self->permissions});
+    }
+    $uri->query_form(%query);
+    return $uri->as_string;
 }
 
 no Moose;
@@ -61,7 +66,7 @@ Facebook::Graph::Authorize - Authorizing an app with Facebook
 
 =head1 VERSION
 
-version 0.0100
+version 0.0200
 
 =head1 METHODS
 
@@ -83,10 +88,14 @@ Sets the display type for the authorization screen that a user will see.
 Defaults to C<page>. Valid types are C<page>, C<popup>, C<wap>, and C<touch>. See B<Dialog Form Factors> in L<http://developers.facebook.com/docs/authentication/> for details.
 
 
-=head2 to_url ( )
+=head2 uri_as_string ( )
 
-Returns a URL string to redirect the user back to Facebook.
+Returns a URI string to redirect the user back to Facebook.
 
 
+
+=head1 LEGAL
+
+Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

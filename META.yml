@@ -24,6 +24,6 @@ requires:
   Test::More: 0
   URI: 1.54
 resources:
-  bugtracker: http://github.com/plainblack/Facebook-Graph/issues
-  repository: git://github.com/plainblack/Facebook-Graph.git
-version: 0.0100
+  bugtracker: http://github.com/rizen/Facebook-Graph/issues
+  repository: git://github.com/rizen/Facebook-Graph.git
+version: 0.0200

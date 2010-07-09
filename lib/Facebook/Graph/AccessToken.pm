@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken;
 BEGIN {
-  $Facebook::Graph::AccessToken::VERSION = '0.0100';
+  $Facebook::Graph::AccessToken::VERSION = '0.0200';
 }
 
 use Moose;
@@ -28,23 +28,23 @@ has code => (
     required=> 1,
 );
 
-sub to_url {
+sub uri_as_string {
     my ($self) = @_;
-    return $self->uri
-        ->path('oauth/access_token')
-        ->query_form(
-            client_id       => $self->app_id,
-            client_secret   => $self->secret,
-            redirect_uri    => $self->postback,
-            code            => $self->code,
-        )
-        ->as_string;
+    my $uri = $self->uri;
+    $uri->path('oauth/access_token');
+    $uri->query_form(
+        client_id       => $self->app_id,
+        client_secret   => $self->secret,
+        redirect_uri    => $self->postback,
+        code            => $self->code,
+    );
+    return $uri->as_string;
 }
 
 sub request {
     my ($self) = @_;
-    my $response = LWP::UserAgent->new->get($self->to_url);
-    return Facebook::Graph::AccessToken::Response->new($response);
+    my $response = LWP::UserAgent->new->get($self->uri_as_string);
+    return Facebook::Graph::AccessToken::Response->new(response => $response);
 }
 
 no Moose;
@@ -53,17 +53,21 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Facebook::Graph::AccessToken - Acquire and access token from Facebook.
+Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 
 =head1 VERSION
 
-version 0.0100
+version 0.0200
 
 =head1 METHODS
 
-=head2 to_url ()
+=head2 uri_as_string ()
 
 =head2 request ()
+
+=head1 LEGAL
+
+Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

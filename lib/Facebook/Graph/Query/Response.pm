@@ -1,44 +1,37 @@
-package Facebook::Graph::AccessToken::Response;
+package Facebook::Graph::Query::Response;
 BEGIN {
-  $Facebook::Graph::AccessToken::Response::VERSION = '0.0200';
+  $Facebook::Graph::Query::Response::VERSION = '0.0200';
 }
 
 use Moose;
-use URI;
-use URI::QueryParam;
+use JSON;
 
 has response => (
     is      => 'ro',
     required=> 1,
 );
 
-has token => (
+has as_json => (
     is      => 'ro',
     lazy    => 1,
     default => sub {
         my $self = shift;
         my $response = $self->response;
         if ($response->is_success) {
-            return URI->new($response->content)->query_param('access_token');
+            return $response->content;
         }
         else {
-            confess [$response->code, 'Could not fetch access token: '.$response->message]
+            confess [$response->code, 'Could not execute query: '.$response->message]
         }
     }
 );
 
-has expires => (
+has as_hashref => (
     is      => 'ro',
     lazy    => 1,
     default => sub {
         my $self = shift;
-        my $response = $self->response;
-        if ($response->is_success) {
-            return URI->new($response->content)->query_param('expires');
-        }
-        else {
-            confess [$response->code, 'Could not fetch access token: '.$response->message]
-        }
+        return JSON->new->decode($self->as_json);
     }
 );
 
@@ -47,7 +40,7 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Facebook::Graph::AccessToken::Response - The Facebook access token request response.
+Facebook::Graph::Query:Response - Handling of a Facebook::Graph::Query result set.
 
 
 =head1 VERSION
