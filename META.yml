@@ -26,4 +26,4 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 0.0200
+version: 0.0201

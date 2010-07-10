@@ -1,3 +1,10 @@
+0.0201 July 10, 2010
+ - Better error messages on failed queries.
+ - Fixed the AccessToken parsing problem.
+ - Fixed another POD formatting problem.
+ - More cleanup.
+ - Modified the fetch() method to use the Query module behind the scenes.
+
 0.0200 July 9, 2010
  - Added the Facebook::Graph::Query API, which allows for powerful searching of Facebook data.
  - Fixed a bunch of AccessToken and Authorize bugs.

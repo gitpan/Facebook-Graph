@@ -1,6 +1,6 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '0.0200';
+  $Facebook::Graph::Query::VERSION = '0.0201';
 }
 
 use Moose;
@@ -30,7 +30,6 @@ has fields => (
 has metadata => (
     is          => 'rw',
     predicate   => 'has_metadata',
-    default     => 0,
 );
 
 has limit => (
@@ -183,11 +182,11 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Facebook::Graph::Query - Incredibly simple and fast searching of Facebook data.
+Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data.
 
 =head1 VERSION
 
-version 0.0200
+version 0.0201
 
 =head1 SYNOPSIS
 
@@ -211,8 +210,22 @@ version 0.0200
     ->to_hashref;
 
 
-=head1 METHODS
+=head1 DESCRIPTION
 
+This module presents a programatic approach to building the queries necessary to search and retrieve Facebook data. It provides an almost SQL like way of writing queries using code. For example:
+
+ my $results = $fb
+    ->select_fields(qw(id name))
+    ->search('Dave','user')
+    ->where_since('yesterday')
+    ->limit_results(25)
+    ->request
+    ->to_hashref;
+    
+The above query, if you were read it like text, says: "Give me the user ids and full names of all users named Dave that have been created since yesterday, and limit the result set to the first 25."
+
+
+=head1 METHODS
 
 =head2 find ( id )
 

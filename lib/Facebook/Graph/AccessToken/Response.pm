@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken::Response;
 BEGIN {
-  $Facebook::Graph::AccessToken::Response::VERSION = '0.0200';
+  $Facebook::Graph::AccessToken::Response::VERSION = '0.0201';
 }
 
 use Moose;
@@ -19,7 +19,7 @@ has token => (
         my $self = shift;
         my $response = $self->response;
         if ($response->is_success) {
-            return URI->new($response->content)->query_param('access_token');
+            return URI->new('?'.$response->content)->query_param('access_token');
         }
         else {
             confess [$response->code, 'Could not fetch access token: '.$response->message]
@@ -34,7 +34,7 @@ has expires => (
         my $self = shift;
         my $response = $self->response;
         if ($response->is_success) {
-            return URI->new($response->content)->query_param('expires');
+            return URI->new('?'.$response->content)->query_param('expires');
         }
         else {
             confess [$response->code, 'Could not fetch access token: '.$response->message]
@@ -49,10 +49,13 @@ __PACKAGE__->meta->make_immutable;
 
 Facebook::Graph::AccessToken::Response - The Facebook access token request response.
 
-
 =head1 VERSION
 
-version 0.0200
+version 0.0201
+
+=head1 Description
+
+You'll be given one of these as a result of calling the C<request> method from a L<Facebook::Graph::AccessToken> object.
 
 =head1 METHODS
 

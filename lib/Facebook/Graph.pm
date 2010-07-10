@@ -1,15 +1,12 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0200';
+  $Facebook::Graph::VERSION = '0.0201';
 }
 
 use Moose;
 use Facebook::Graph::AccessToken;
 use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
-with 'Facebook::Graph::Role::Uri';
-use LWP::UserAgent;
-use JSON;
 
 has app_id => (
     is      => 'ro',
@@ -38,13 +35,7 @@ sub request_access_token {
         app_id          => $self->app_id,
     )->request;
     $self->access_token($token->token);
-    return $self;
-}
-
-sub set_access_token {
-    my ($self, $token) = @_;
-    $self->access_token($token);
-    return $self;
+    return $token;
 }
 
 sub authorize { 
@@ -57,15 +48,7 @@ sub authorize {
 
 sub fetch {
     my ($self, $object_name) = @_;
-    my $uri = $self->uri;
-    $uri->path($object_name);
-    if ($self->has_access_token) {
-        $uri->query_form(
-            access_token    => $self->access_token,  
-        );
-    }
-    my $content = LWP::UserAgent->new->get($uri->as_string)->content;
-    return JSON->new->decode($content);
+    return $self->query->find($object_name)->request->as_hashref;
 }
 
 sub query {
@@ -87,7 +70,7 @@ Facebook::Graph - An interface to the Facebook Graph API.
 
 =head1 VERSION
 
-version 0.0200
+version 0.0201
 
 =head1 SYNOPSIS
 
@@ -117,7 +100,7 @@ Get the user to authorize your app (only needed if you want to fetch non-public 
 
  my $uri = $fb
     ->authorize
-    ->add_permissions(qw(offline_access publish_stream))
+    ->extend_permissions(qw(offline_access publish_stream))
     ->uri_as_string;
 
  # redirect the user's browser to $uri
@@ -129,7 +112,7 @@ Handle the Facebook authorization code postback:
  
 Or if you already had the access token:
 
- $fb->set_access_token($token);
+ $fb->access_token($token);
  
 Get some info:
 
@@ -139,23 +122,87 @@ Get some info:
 
 =head1 DESCRIPTION
 
-This is a Perl interface to the Facebook Graph API L<http://developers.facebook.com/docs/api>.
+This is a Perl interface to the Facebook Graph API L<http://developers.facebook.com/docs/api>. With this module you can currently query public Facebook data, query privileged Facebook data, and build a privileged Facebook application. See the TODO for all that this module cannot yet do.
 
-B<WARNING:> This module is experimental at best. The work on it has only just begun because the Graph API itself isn't very new. Therefore things are subject to change drastically with each release, and it may fail to work entirely.
-
-
-
-
-=head1 TODO
-
-Basically everything. It has hardly any tests, very little documentation, and very little functionality in it's present form.
+B<WARNING:> The work on this module has only just begun because the Graph API itself isn't very new, and I'm only working on it as I have some tuits. Therefore things are potentially subject to change drastically with each release.
 
 
 =head1 METHODS
 
-See the SYNOPSIS for the time being.
+=head2 new ( [ params ] )
 
-B<NOTE:> The C<fetch> method is quick and dirty. Consider using C<query> (L<Facebook::Graph::Query>) instead.
+The constructor.
+
+=head3 params
+
+A hash of base parameters, just so you don't have to pass them around. If you only want to do public queries then these params are not needed.
+
+=over
+
+=item access_token
+
+An access token string used to make Facebook requests as a privileged user. Required if you want to make privileged queries or perform privileged actions on Facebook objects.
+
+=item app_id
+
+The application id that you get from Facebook after registering (L<http://developers.facebook.com/setup/>) your application on their site. Required if you'll be calling the C<request_access_token> or C<authorize> methods.
+
+=item secret
+
+The application secret that you get from Facebook after registering your application. Required if you'll be calling the C<request_access_token> method.
+
+=item postback
+
+The URI that Facebook should post your authorization code back to. Required if you'll be calling the C<request_access_token> or C<authorize> methods.
+
+B<NOTE:> It must be a sub URI of the URI that you put in the Application Settings > Connect > Connect URL field of your application's profile on Facebook.
+
+=back
+
+
+=head2 authorize ( )
+
+Creates a L<Facebook::Graph::Authorize> object, which can be used to get permissions from a user for your application.
+
+
+=head2 request_access_token ( code )
+
+Creates a L<Facebook::Graph::AccessToken> object and fetches an access token from Facebook, which will allow everything you do with Facebook::Graph to work within user privileges rather than through the public interface. Returns a L<Facebook::Graph::AccessToken::Response> object, and also sets the C<access_token> property in the Facebook::Graph object.
+
+=head3 code
+
+An authorization code string that you should have gotten by going through the C<authorize> process.
+
+
+=head2 query ( )
+
+Creates a L<Facebook::Graph::Query> object, which can be used to fetch and search data from Facebook.
+
+
+=head2 fetch ( id )
+
+Returns a hash reference of an object from facebook. A quick way to grab an object from Facebook. These two statements are identical:
+
+ my $sarah = $fb->fetch('sarahbownds');
+ 
+ my $sarah = $fb->query->find('sarahbownds')->request->as_hashref;
+
+=head3 id
+
+An profile id like C<sarahbownds> or an object id like C<16665510298> for the Perl page.
+
+
+=head1 EXCEPTIONS
+
+This module throws exceptions when it encounters a problem. The exceptions are an array reference where the first element is an HTTP status code and the second element is a human readable string. For example:
+
+ [400, 'Could not execute query (https://graph.facebook.com?fields=): GraphMethodException - Unsupported get request.']
+
+
+=head1 TODO
+
+I still need to add publishing of content, deleting of content, access to pictures, impersonation, and analytics to have a feature complete API. In addition, a cookbook should be written, and a lot more tests as well.
+
 
 =head1 PREREQS
 
