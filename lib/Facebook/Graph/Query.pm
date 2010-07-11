@@ -1,10 +1,10 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '0.0201';
+  $Facebook::Graph::Query::VERSION = '0.0300';
 }
 
 use Moose;
-use Facebook::Graph::Query::Response;
+use Facebook::Graph::Response;
 with 'Facebook::Graph::Role::Uri';
 use LWP::UserAgent;
 
@@ -173,7 +173,7 @@ sub request {
     my ($self, $uri) = @_;
     $uri ||= $self->uri_as_string;
     my $response = LWP::UserAgent->new->get($uri);
-    return Facebook::Graph::Query::Response->new(response => $response);
+    return Facebook::Graph::Response->new(response => $response);
 }
 
 no Moose;
@@ -186,7 +186,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 0.0201
+version 0.0300
 
 =head1 SYNOPSIS
 
@@ -359,7 +359,7 @@ Returns a URI string based upon all the methods you've called so far on the quer
 
 =head2 request ( [ uri ] )
 
-Forms a URI string based on every method you've called so far, and fetches the data. Returns a L<Facebook::Graph::Query::Response> object.
+Forms a URI string based on every method you've called so far, and fetches the data. Returns a L<Facebook::Graph::Response> object.
 
 =head3 uri
 

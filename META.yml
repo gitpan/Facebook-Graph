@@ -1,5 +1,5 @@
 ---
-abstract: 'An interface to the Facebook Graph API.'
+abstract: 'A fast and easy way to integrate your apps with Facebook.'
 author:
   - 'JT Smith <jt@plainblack.com>'
 build_requires: {}
@@ -26,4 +26,4 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 0.0201
+version: 0.0300

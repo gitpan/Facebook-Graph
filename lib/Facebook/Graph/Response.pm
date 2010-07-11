@@ -1,6 +1,6 @@
-package Facebook::Graph::Query::Response;
+package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Query::Response::VERSION = '0.0201';
+  $Facebook::Graph::Response::VERSION = '0.0300';
 }
 
 use Moose;
@@ -26,7 +26,7 @@ has as_json => (
             unless ($@) {
                 $message = $error->{error}{type} . ' - ' . $error->{error}{message};
             }
-            confess [$response->code, 'Could not execute query ('.$response->request->uri->as_string.'): '.$message];
+            confess [$response->code, 'Could not execute request ('.$response->request->uri->as_string.'): '.$message];
         }
     },
 );
@@ -45,15 +45,15 @@ __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
 
-Facebook::Graph::Query::Response - Handling of a Facebook::Graph::Query result set.
+Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 0.0201
+version 0.0300
 
 =head1 DESCRIPTION
 
-You'll be given one of these as a result of calling the C<request> method on a C<Facebook::Graph::Query> object.
+You'll be given one of these as a result of calling the C<request> method on a C<Facebook::Graph::Query> or others.
 
 
 =head1 METHODS

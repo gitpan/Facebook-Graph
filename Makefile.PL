@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.31;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'An interface to the Facebook Graph API.',
+  'ABSTRACT' => 'A fast and easy way to integrate your apps with Facebook.',
   'AUTHOR' => 'JT Smith <jt@plainblack.com>',
   'BUILD_REQUIRES' => {},
   'CONFIGURE_REQUIRES' => {
@@ -27,7 +27,7 @@ my %WriteMakefileArgs = (
     'Test::More' => '0',
     'URI' => '1.54'
   },
-  'VERSION' => '0.0201',
+  'VERSION' => '0.0300',
   'test' => {
     'TESTS' => 't/*.t'
   }
