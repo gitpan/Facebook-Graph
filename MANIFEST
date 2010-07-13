@@ -10,11 +10,13 @@ lib/Facebook/Graph.pm
 lib/Facebook/Graph/AccessToken.pm
 lib/Facebook/Graph/AccessToken/Response.pm
 lib/Facebook/Graph/Authorize.pm
+lib/Facebook/Graph/Picture.pm
 lib/Facebook/Graph/Query.pm
 lib/Facebook/Graph/Response.pm
 lib/Facebook/Graph/Role/Uri.pm
 lib/Facebook/Graph/Session.pm
 t/02_public_fetch.t
 t/03_public_query.t
+t/04_picture.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t

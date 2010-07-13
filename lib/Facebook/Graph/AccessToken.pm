@@ -1,9 +1,9 @@
 package Facebook::Graph::AccessToken;
 BEGIN {
-  $Facebook::Graph::AccessToken::VERSION = '0.0300';
+  $Facebook::Graph::AccessToken::VERSION = '0.0400';
 }
 
-use Moose;
+use Any::Moose;
 use Facebook::Graph::AccessToken::Response;
 with 'Facebook::Graph::Role::Uri';
 use LWP::UserAgent;
@@ -47,7 +47,7 @@ sub request {
     return Facebook::Graph::AccessToken::Response->new(response => $response);
 }
 
-no Moose;
+no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 
 
@@ -58,7 +58,7 @@ Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 =head1 VERSION
 
-version 0.0300
+version 0.0400
 
 =head1 SYNOPSIS
 

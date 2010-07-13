@@ -20,14 +20,14 @@ my %WriteMakefileArgs = (
   'LICENSE' => 'perl',
   'NAME' => 'Facebook::Graph',
   'PREREQ_PM' => {
+    'Any::Moose' => '0.13',
     'Crypt::SSLeay' => '0.57',
     'JSON' => '2.16',
     'LWP' => '5.836',
-    'Moose' => '0.93',
     'Test::More' => '0',
     'URI' => '1.54'
   },
-  'VERSION' => '0.0300',
+  'VERSION' => '0.0400',
   'test' => {
     'TESTS' => 't/*.t'
   }

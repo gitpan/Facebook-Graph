@@ -1,9 +1,9 @@
 package Facebook::Graph::Authorize;
 BEGIN {
-  $Facebook::Graph::Authorize::VERSION = '0.0300';
+  $Facebook::Graph::Authorize::VERSION = '0.0400';
 }
 
-use Moose;
+use Any::Moose;
 with 'Facebook::Graph::Role::Uri';
 
 has app_id => (
@@ -56,7 +56,7 @@ sub uri_as_string {
     return $uri->as_string;
 }
 
-no Moose;
+no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 
 
@@ -67,7 +67,7 @@ Facebook::Graph::Authorize - Authorizing an app with Facebook
 
 =head1 VERSION
 
-version 0.0300
+version 0.0400
 
 =head1 SYNOPSIS
 

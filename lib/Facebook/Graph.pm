@@ -1,12 +1,13 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0300';
+  $Facebook::Graph::VERSION = '0.0400';
 }
 
-use Moose;
+use Any::Moose;
 use Facebook::Graph::AccessToken;
 use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
+use Facebook::Graph::Picture;
 
 has app_id => (
     is      => 'ro',
@@ -71,8 +72,14 @@ sub query {
     return Facebook::Graph::Query->new(%params);
 }
 
+sub picture {
+    my ($self, $object_name) = @_;
+    return Facebook::Graph::Picture->new( object_name => $object_name );
+}
 
-no Moose;
+
+
+no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
@@ -81,7 +88,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0300
+version 0.0400
 
 =head1 SYNOPSIS
 
@@ -97,6 +104,8 @@ Or better yet:
     ->select_fields(qw( id name picture ))
     ->request
     ->as_hashref;
+    
+ my $sarahs_picture_uri = $fb->picture('sarahbownds')->get_large->uri_as_string;
  
  
 =head2 Building A Privileged App
@@ -203,6 +212,16 @@ Returns a hash reference of an object from facebook. A quick way to grab an obje
 An profile id like C<sarahbownds> or an object id like C<16665510298> for the Perl page.
 
 
+=head2 picture ( id )
+
+Returns a L<Facebook::Graph::Picture> object, which can be used to generate the URLs of the pictures of any object on Facebook.
+
+=head3 id
+
+An profile id like C<sarahbownds> or an object id like C<16665510298> for the Perl page.
+
+
+
 
 =head2 convert_sessions ( sessions )
 
@@ -233,16 +252,18 @@ This module throws exceptions when it encounters a problem. The exceptions are a
 
 =head1 TODO
 
-I still need to add publishing of content, deleting of content, access to pictures, impersonation, and analytics to have a feature complete API. In addition, a cookbook should be written, and a lot more tests as well.
+I still need to add publishing of content, deleting of content, impersonation, and analytics to have a feature complete API. In addition, a cookbook should be written, and a lot more tests as well.
 
 
 =head1 PREREQS
 
-L<Moose>
+L<Any::Moose>
 L<JSON>
 L<LWP>
 L<URI>
 L<Crypt::SSLeay>
+
+B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
 
 =head1 SUPPORT
 
@@ -261,7 +282,7 @@ L<http://github.com/rizen/Facebook-Graph/issues>
 
 =head1 SEE ALSO
 
-If you're looking for a fully featured Facebook client in Perl I highly recommend L<WWW::Facebook:API>. It does just about everything, it just uses the old Facebook API.
+If you're looking for a fully featured Facebook client in Perl I highly recommend L<WWW::Facebook::API>. It does just about everything, it just uses the old Facebook API.
 
 =head1 AUTHOR
 

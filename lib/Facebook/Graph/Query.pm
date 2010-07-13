@@ -1,9 +1,9 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '0.0300';
+  $Facebook::Graph::Query::VERSION = '0.0400';
 }
 
-use Moose;
+use Any::Moose;
 use Facebook::Graph::Response;
 with 'Facebook::Graph::Role::Uri';
 use LWP::UserAgent;
@@ -176,7 +176,7 @@ sub request {
     return Facebook::Graph::Response->new(response => $response);
 }
 
-no Moose;
+no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 
 
@@ -186,7 +186,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 0.0300
+version 0.0400
 
 =head1 SYNOPSIS
 

@@ -1,9 +1,9 @@
 package Facebook::Graph::Role::Uri;
 BEGIN {
-  $Facebook::Graph::Role::Uri::VERSION = '0.0300';
+  $Facebook::Graph::Role::Uri::VERSION = '0.0400';
 }
 
-use Moose::Role;
+use Any::Moose 'Role';
 use URI;
 
 sub uri {
@@ -19,7 +19,7 @@ Facebook::Graph::Role::Uri - The base URI for the Facebook Graph API.
 
 =head1 VERSION
 
-version 0.0300
+version 0.0400
 
 =head1 DESCRIPTION
 
