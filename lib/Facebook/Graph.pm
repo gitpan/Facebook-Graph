@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0400';
+  $Facebook::Graph::VERSION = '0.0401';
 }
 
 use Any::Moose;
@@ -88,7 +88,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0400
+version 0.0401
 
 =head1 SYNOPSIS
 
@@ -245,14 +245,14 @@ An array reference of session ids from the old Facebook API.
 
 =head1 EXCEPTIONS
 
-This module throws exceptions when it encounters a problem. The exceptions are an array reference where the first element is an HTTP status code and the second element is a human readable string. For example:
+This module throws exceptions when it encounters a problem. The exceptions are an array reference. The first element is an HTTP status code. The second element is a human readable string. The third element is the exception type as identified by the Facebook API, or if something terrible went wrong C<Unknown>. For example:
 
- [400, 'Could not execute request (https://graph.facebook.com?fields=): GraphMethodException - Unsupported get request.']
+ [400, 'Could not execute request (https://graph.facebook.com?fields=): GraphMethodException - Unsupported get request.', 'GraphMethodException']
 
 
 =head1 TODO
 
-I still need to add publishing of content, deleting of content, impersonation, and analytics to have a feature complete API. In addition, a cookbook should be written, and a lot more tests as well.
+I still need to add publishing of content, deleting of content, impersonation, and analytics to have a feature complete API. In addition, the module could use a lot more tests.
 
 
 =head1 PREREQS

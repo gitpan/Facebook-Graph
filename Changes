@@ -1,3 +1,8 @@
+0.0401 July 14, 2010
+ - Added a cookbook and the first recipe.
+ - Made the third element of the exception, the original exception type from Facebook.
+ - Fixed a bug with the Any::Moose transition.
+
 0.0400 July 13, 2010
  - Added Facebook::Graph::Picture for accessing the pictures of any object.
  - Fixed POD docs thanks to Tim Heaney for the patch.

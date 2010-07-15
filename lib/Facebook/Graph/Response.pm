@@ -1,6 +1,6 @@
 package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Response::VERSION = '0.0400';
+  $Facebook::Graph::Response::VERSION = '0.0401';
 }
 
 use Any::Moose;
@@ -23,10 +23,12 @@ has as_json => (
         else {
             my $message = $response->message;
             my $error = eval { JSON->new->decode($response->content) };
+            my $type = 'Unkown';
             unless ($@) {
                 $message = $error->{error}{type} . ' - ' . $error->{error}{message};
+                $type = $error->{error}{type};
             }
-            confess [$response->code, 'Could not execute request ('.$response->request->uri->as_string.'): '.$message];
+            confess [$response->code, 'Could not execute request ('.$response->request->uri->as_string.'): '.$message, $type];
         }
     },
 );
@@ -40,7 +42,7 @@ has as_hashref => (
     },
 );
 
-no Moose;
+no Any::Moose;
 __PACKAGE__->meta->make_immutable;
 
 =head1 NAME
@@ -49,7 +51,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 0.0400
+version 0.0401
 
 =head1 DESCRIPTION
 

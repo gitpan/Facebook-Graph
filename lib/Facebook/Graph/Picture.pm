@@ -1,6 +1,6 @@
 package Facebook::Graph::Picture;
 BEGIN {
-  $Facebook::Graph::Picture::VERSION = '0.0400';
+  $Facebook::Graph::Picture::VERSION = '0.0401';
 }
 
 use Any::Moose;
@@ -57,7 +57,7 @@ Facebook::Graph::Picture - Get the URI for the picture of any object.
 
 =head1 VERSION
 
-version 0.0400
+version 0.0401
 
 =head1 SYNOPSIS
 
