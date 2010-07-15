@@ -1,10 +1,10 @@
 =head1 NAME
 
-Facebook::Graph Cookbook
+Facebook::Graph::Cookbook - A cookbook for Facebook::Graph
 
 =head1 VERSION
 
-version 0.0401
+version 0.0402
 
 =head1 DESCRIPTION
 
