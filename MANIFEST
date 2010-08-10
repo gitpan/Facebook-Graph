@@ -4,7 +4,8 @@ MANIFEST
 META.yml
 Makefile.PL
 README
-author.t/private_fetch.txt
+author.t/private_fetch.t
+author.t/publish_to_feed.t
 dist.ini
 eg/recipe1.psgi
 lib/Facebook/Graph.pm
@@ -14,6 +15,7 @@ lib/Facebook/Graph/Authorize.pm
 lib/Facebook/Graph/Cookbook.pod
 lib/Facebook/Graph/Cookbook/Recipe1.pod
 lib/Facebook/Graph/Picture.pm
+lib/Facebook/Graph/Publish/Post.pm
 lib/Facebook/Graph/Query.pm
 lib/Facebook/Graph/Response.pm
 lib/Facebook/Graph/Role/Uri.pm
