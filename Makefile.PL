@@ -22,12 +22,14 @@ my %WriteMakefileArgs = (
   'PREREQ_PM' => {
     'Any::Moose' => '0.13',
     'Crypt::SSLeay' => '0.57',
+    'DateTime' => '0.61',
+    'DateTime::Format::Strptime' => '1.4000',
     'JSON' => '2.16',
     'LWP' => '5.836',
     'Test::More' => '0',
     'URI' => '1.54'
   },
-  'VERSION' => '0.0500',
+  'VERSION' => '0.0600',
   'test' => {
     'TESTS' => 't/*.t'
   }

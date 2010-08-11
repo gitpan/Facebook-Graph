@@ -1,6 +1,6 @@
 package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Response::VERSION = '0.0500';
+  $Facebook::Graph::Response::VERSION = '0.0600';
 }
 
 use Any::Moose;
@@ -9,6 +9,15 @@ use JSON;
 has response => (
     is      => 'ro',
     required=> 1,
+);
+
+has as_string => (
+    is      => 'ro',
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        return $self->response->content;
+    },
 );
 
 has as_json => (
@@ -23,7 +32,7 @@ has as_json => (
         else {
             my $message = $response->message;
             my $error = eval { JSON->new->decode($response->content) };
-            my $type = 'Unkown';
+            my $type = 'Unknown';
             unless ($@) {
                 $message = $error->{error}{type} . ' - ' . $error->{error}{message};
                 $type = $error->{error}{type};
@@ -51,7 +60,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 0.0500
+version 0.0600
 
 =head1 DESCRIPTION
 
@@ -59,6 +68,8 @@ You'll be given one of these as a result of calling the C<request> method on a C
 
 
 =head1 METHODS
+
+Returns the response as a string. Does not throw an exception of any kind.
 
 =head2 as_json ()
 

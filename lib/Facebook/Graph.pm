@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0500';
+  $Facebook::Graph::VERSION = '0.0600';
 }
 
 use Any::Moose;
@@ -9,13 +9,22 @@ use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
 use Facebook::Graph::Picture;
 use Facebook::Graph::Publish::Post;
+use Facebook::Graph::Publish::Like;
+use Facebook::Graph::Publish::Comment;
+use Facebook::Graph::Publish::Note;
+use Facebook::Graph::Publish::Link;
+use Facebook::Graph::Publish::Event;
+use Facebook::Graph::Publish::RSVPMaybe;
+use Facebook::Graph::Publish::RSVPAttending;
+use Facebook::Graph::Publish::RSVPDeclined;
 
 has app_id => (
     is      => 'ro',
 );
 
 has secret => (
-    is      => 'ro',
+    is          => 'ro',
+    predicate   => 'has_secret',
 );
 
 has postback => (
@@ -78,7 +87,7 @@ sub picture {
     return Facebook::Graph::Picture->new( object_name => $object_name );
 }
 
-sub publish_post {
+sub add_post {
     my ($self) = @_;
     my %params;
     if ($self->has_access_token) {
@@ -90,6 +99,113 @@ sub publish_post {
     return Facebook::Graph::Publish::Post->new( %params );
 }
 
+sub add_like {
+    my ($self, $object_name) = @_;
+    my %params = (
+        object_name => $object_name,
+    );
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Like->new( %params );
+}
+
+sub add_comment {
+    my ($self, $object_name) = @_;
+    my %params = (
+        object_name => $object_name,
+    );
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Comment->new( %params );
+}
+
+sub add_note {
+    my ($self) = @_;
+    my %params;
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Note->new( %params );
+}
+
+sub add_link {
+    my ($self) = @_;
+    my %params;
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Link->new( %params );
+}
+
+sub add_event {
+    my ($self) = @_;
+    my %params;
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Event->new( %params );
+}
+
+sub rsvp_maybe {
+    my ($self, $object_name) = @_;
+    my %params = (
+        object_name => $object_name,
+    );
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::RSVPMaybe->new( %params );
+}
+
+sub rsvp_attending {
+    my ($self, $object_name) = @_;
+    my %params = (
+        object_name => $object_name,
+    );
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::RSVPAttending->new( %params );
+}
+
+sub rsvp_declined {
+    my ($self, $object_name) = @_;
+    my %params = (
+        object_name => $object_name,
+    );
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::RSVPDeclined->new( %params );
+}
+
+
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
@@ -100,7 +216,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0500
+version 0.0600
 
 =head1 SYNOPSIS
 
@@ -234,12 +350,67 @@ An profile id like C<sarahbownds> or an object id like C<16665510298> for the Pe
 
 
 
-=head2 publish_post ( )
+=head2 add_post ( )
 
 Creates a L<Facebook::Graph::Publish::Post> object, which can be used to publish data to a user's feed/wall.
 
 
+=head2 add_like ( id )
 
+Creates a L<Facebook::Graph::Publish::Like> object to tell everyone about a post you like.
+
+=head3 id
+
+The id of a post you like.
+
+
+=head2 add_comment ( id )
+
+Creates a L<Facebook::Graph::Publish::Comment> object that you can use to comment on a note.
+
+=head3 id
+
+The id of the post you want to comment on.
+
+
+=head2 add_note ( )
+
+Creates a L<Facebook::Graph::Publish::Note> object, which can be used to publish notes.
+
+
+=head2 add_link ( )
+
+Creates a L<Facebook::Graph::Publish::Link> object, which can be used to publish links.
+
+
+=head2 add_event ( )
+
+Creates a L<Facebook::Graph::Publish::Event> object, which can be used to publish events.
+
+
+=head2 rsvp_maybe ( id )
+
+RSVP as 'maybe' to an event.
+
+=head3 id
+
+The id of an event.
+
+=head2 rsvp_attending ( id )
+
+RSVP as 'attending' to an event.
+
+=head3 id
+
+The id of an event.
+
+=head2 rsvp_declined ( id )
+
+RSVP as 'declined' to an event.
+
+=head3 id
+
+The id of an event.
 
 
 
@@ -272,7 +443,7 @@ This module throws exceptions when it encounters a problem. The exceptions are a
 
 =head1 TODO
 
-I still need to add publishing of content, deleting of content, impersonation, and analytics to have a feature complete API. In addition, the module could use a lot more tests.
+I still need to add publishing albums/photos, deleting of content, impersonation, and analytics to have a feature complete API. Would also like to figure out inbox stuff, but it doesn't seem to be documented. In addition, the module could use a lot more tests.
 
 
 =head1 PREREQS
@@ -282,6 +453,8 @@ L<JSON>
 L<LWP>
 L<URI>
 L<Crypt::SSLeay>
+L<DateTime>
+L<DateTime::Format::Strptime>
 
 B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
 
