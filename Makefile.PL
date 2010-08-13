@@ -24,12 +24,14 @@ my %WriteMakefileArgs = (
     'Crypt::SSLeay' => '0.57',
     'DateTime' => '0.61',
     'DateTime::Format::Strptime' => '1.4000',
+    'Digest::SHA' => '5.47',
     'JSON' => '2.16',
     'LWP' => '5.836',
+    'MIME::Base64::URLSafe' => '0.01',
     'Test::More' => '0',
     'URI' => '1.54'
   },
-  'VERSION' => '0.0600',
+  'VERSION' => '0.0700',
   'test' => {
     'TESTS' => 't/*.t'
   }

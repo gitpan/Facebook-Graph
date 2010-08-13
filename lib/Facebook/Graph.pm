@@ -1,9 +1,12 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0600';
+  $Facebook::Graph::VERSION = '0.0700';
 }
 
 use Any::Moose;
+use Digest::SHA qw(hmac_sha256);
+use MIME::Base64::URLSafe;
+use JSON;
 use Facebook::Graph::AccessToken;
 use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
@@ -36,6 +39,25 @@ has access_token => (
     predicate   => 'has_access_token',
 );
 
+
+sub parse_signed_request {
+    my ($self, $signed_request) = @_;
+
+    my ($encoded_sig, $payload) = split(/\./, $signed_request);
+
+	my $sig = urlsafe_b64decode($encoded_sig);
+    my $data = JSON->new->decode(urlsafe_b64decode($payload));
+
+    if (uc($data->{'algorithm'}) ne "HMAC-SHA256") {
+        confess [430, "Unknown algorithm. Expected HMAC-SHA256"];
+    }
+
+    my $expected_sig = hmac_sha256($payload, $self->secret);
+    if ($sig ne $expected_sig) {
+        confess [431, "Bad Signed JSON signature!"];
+    }
+    return $data;
+}
 
 sub request_access_token {
     my ($self, $code) = @_;
@@ -78,6 +100,9 @@ sub query {
     my %params;
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
     }
     return Facebook::Graph::Query->new(%params);
 }
@@ -216,7 +241,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0600
+version 0.0700
 
 =head1 SYNOPSIS
 
@@ -433,6 +458,15 @@ See also L<Facebook::Graph::Session>.
 An array reference of session ids from the old Facebook API.
 
 
+=head2 parse_signed_request ( signed_request )
+
+Allows the decoding of signed requests for canvas applications to ensure data passed back from Facebook isn't tampered with. You can read more about this at L<http://developers.facebook.com/docs/authentication/canvas>.
+
+=head3 signed_request
+
+A signature string passed from Facebook. To capture a signed request your app must be displayed within the Facebook canvas page and then you must pull the query parameter called C<signed_request> from the query string.
+
+B<NOTE:> To get this passed to your app you must enable it in your migration settings for your app (L<http://www.facebook.com/developers/>).
 
 =head1 EXCEPTIONS
 
@@ -455,8 +489,11 @@ L<URI>
 L<Crypt::SSLeay>
 L<DateTime>
 L<DateTime::Format::Strptime>
+L<MIME::Base64::URLSafe>
+L<Digest::SHA>
 
 B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
+
 
 =head1 SUPPORT
 

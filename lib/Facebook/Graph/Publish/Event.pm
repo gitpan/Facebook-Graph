@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Event;
 BEGIN {
-  $Facebook::Graph::Publish::Event::VERSION = '0.0600';
+  $Facebook::Graph::Publish::Event::VERSION = '0.0700';
 }
 
 use Any::Moose;
@@ -102,7 +102,7 @@ Facebook::Graph::Publish::Event - Add an event.
 
 =head1 VERSION
 
-version 0.0600
+version 0.0700
 
 =head1 SYNOPSIS
 
