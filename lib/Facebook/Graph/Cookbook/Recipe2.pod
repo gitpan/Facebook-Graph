@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe2 - Building a Full Web App
 
 =head1 VERSION
 
-version 0.0700
+version 0.0701
 
 =head1 DESCRIPTION
 
@@ -92,6 +92,8 @@ Go use the web app. See what it does. Point your browser to:
 Now that you know you have a working app, start tinkering. Make it do what you want it to do.
 
 =head1 SEE ALSO
+
+If you would like a step by step as to how this app was created, download the PDF presentation (L<http://www.madmongers.org/talks/writing-facebook-apps-in-10-minutes-or-less>) I gave of this app at MadMongers (L<http://www.madmongers.org>).
 
 For more recipes, check out the L<Facebook::Graph::Cookbook>.
 

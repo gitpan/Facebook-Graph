@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Post;
 BEGIN {
-  $Facebook::Graph::Publish::Post::VERSION = '0.0700';
+  $Facebook::Graph::Publish::Post::VERSION = '0.0701';
 }
 
 use Any::Moose;
@@ -113,7 +113,7 @@ Facebook::Graph::Publish::Post - Publish to a user's wall.
 
 =head1 VERSION
 
-version 0.0700
+version 0.0701
 
 =head1 SYNOPSIS
 

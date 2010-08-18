@@ -1,6 +1,6 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '0.0700';
+  $Facebook::Graph::Query::VERSION = '0.0701';
 }
 
 use Any::Moose;
@@ -196,7 +196,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 0.0700
+version 0.0701
 
 =head1 SYNOPSIS
 

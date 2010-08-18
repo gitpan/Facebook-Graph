@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::RSVPMaybe;
 BEGIN {
-  $Facebook::Graph::Publish::RSVPMaybe::VERSION = '0.0700';
+  $Facebook::Graph::Publish::RSVPMaybe::VERSION = '0.0701';
 }
 
 use Any::Moose;
@@ -18,7 +18,7 @@ Facebook::Graph::Publish::RSVPMaybe - RSVP maybe to an event.
 
 =head1 VERSION
 
-version 0.0700
+version 0.0701
 
 =head1 SYNOPSIS
 
