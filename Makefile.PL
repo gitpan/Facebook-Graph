@@ -29,9 +29,10 @@ my %WriteMakefileArgs = (
     'LWP' => '5.836',
     'MIME::Base64::URLSafe' => '0.01',
     'Test::More' => '0',
-    'URI' => '1.54'
+    'URI' => '1.54',
+    'URI::Encode' => '0.02'
   },
-  'VERSION' => '0.0703',
+  'VERSION' => '0.0704',
   'test' => {
     'TESTS' => 't/*.t'
   }

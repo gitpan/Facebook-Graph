@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Link;
 BEGIN {
-  $Facebook::Graph::Publish::Link::VERSION = '0.0703';
+  $Facebook::Graph::Publish::Link::VERSION = '0.0704';
 }
 
 use Any::Moose;
@@ -55,7 +55,7 @@ Facebook::Graph::Publish::Link - Add a link.
 
 =head1 VERSION
 
-version 0.0703
+version 0.0704
 
 =head1 SYNOPSIS
 

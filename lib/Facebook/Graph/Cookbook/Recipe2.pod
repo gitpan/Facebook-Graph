@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe2 - Building a Full Web App
 
 =head1 VERSION
 
-version 0.0703
+version 0.0704
 
 =head1 DESCRIPTION
 

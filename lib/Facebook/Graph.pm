@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0703';
+  $Facebook::Graph::VERSION = '0.0704';
 }
 
 use Any::Moose;
@@ -241,7 +241,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0703
+version 0.0704
 
 =head1 SYNOPSIS
 
@@ -493,6 +493,7 @@ L<DateTime>
 L<DateTime::Format::Strptime>
 L<MIME::Base64::URLSafe>
 L<Digest::SHA>
+L<URI::Encode>
 
 B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
 

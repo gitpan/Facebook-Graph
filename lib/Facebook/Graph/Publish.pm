@@ -1,12 +1,13 @@
 package Facebook::Graph::Publish;
 BEGIN {
-  $Facebook::Graph::Publish::VERSION = '0.0703';
+  $Facebook::Graph::Publish::VERSION = '0.0704';
 }
 
 use Any::Moose;
 use Facebook::Graph::Response;
 with 'Facebook::Graph::Role::Uri';
 use LWP::UserAgent;
+use URI::Encode qw(uri_decode);
 
 has secret => (
     is          => 'ro',
@@ -34,7 +35,7 @@ sub get_post_params {
     my $self = shift;
     my %post;
     if ($self->has_access_token) {
-        $post{access_token} = $self->access_token;
+        $post{access_token} = uri_decode($self->access_token);
     }
     return \%post;
 }
@@ -61,7 +62,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 0.0703
+version 0.0704
 
 =head1 DESCRIPTION
 

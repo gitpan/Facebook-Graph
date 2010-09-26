@@ -27,7 +27,8 @@ requires:
   MIME::Base64::URLSafe: 0.01
   Test::More: 0
   URI: 1.54
+  URI::Encode: 0.02
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 0.0703
+version: 0.0704
