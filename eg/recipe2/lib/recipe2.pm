@@ -1,4 +1,8 @@
-use Dancer;
+package recipe2;
+use Dancer ':syntax';
+
+our $VERSION = '0.1';
+
 use Facebook::Graph;
 use XML::FeedPP;
 use Data::ICal;
@@ -93,5 +97,5 @@ post '/ical-importer' => sub {
     template 'ical-importer-post.tt';
 };
 
-dance;
 
+true;

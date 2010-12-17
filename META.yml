@@ -22,6 +22,7 @@ requires:
   DateTime: 0.61
   DateTime::Format::Strptime: 1.4000
   Digest::SHA: 5.47
+  Exception::Class: 1.32
   JSON: 2.16
   LWP: 5.836
   MIME::Base64::URLSafe: 0.01
@@ -31,4 +32,4 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 0.0705
+version: 1.0000

@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '0.0705';
+  $Facebook::Graph::VERSION = '1.0000';
 }
 
 use Any::Moose;
@@ -20,6 +20,7 @@ use Facebook::Graph::Publish::Event;
 use Facebook::Graph::Publish::RSVPMaybe;
 use Facebook::Graph::Publish::RSVPAttending;
 use Facebook::Graph::Publish::RSVPDeclined;
+use Facebook::Graph::Exception;
 
 has app_id => (
     is      => 'ro',
@@ -49,12 +50,12 @@ sub parse_signed_request {
     my $data = JSON->new->decode(urlsafe_b64decode($payload));
 
     if (uc($data->{'algorithm'}) ne "HMAC-SHA256") {
-        confess [430, "Unknown algorithm. Expected HMAC-SHA256"];
+        Facebook::Graph::Exception::General->throw( error => "Unknown algorithm. Expected HMAC-SHA256");
     }
 
     my $expected_sig = hmac_sha256($payload, $self->secret);
     if ($sig ne $expected_sig) {
-        confess [431, "Bad Signed JSON signature!"];
+        Facebook::Graph::Exception::General->throw( error => "Bad Signed JSON signature!");
     }
     return $data;
 }
@@ -113,8 +114,11 @@ sub picture {
 }
 
 sub add_post {
-    my ($self) = @_;
+    my ($self, $object_name) = @_;
     my %params;
+    if ($object_name) {
+        $params{object_name} = $object_name;
+    }
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
     }
@@ -177,8 +181,11 @@ sub add_link {
 }
 
 sub add_event {
-    my ($self) = @_;
+    my ($self, $object_name) = @_;
     my %params;
+    if ($object_name) {
+        $params{object_name} = $object_name;
+    }
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
     }
@@ -241,7 +248,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 SYNOPSIS
 
@@ -377,9 +384,13 @@ An profile id like C<sarahbownds> or an object id like C<16665510298> for the Pe
 
 
 
-=head2 add_post ( )
+=head2 add_post ( [ id ] )
 
 Creates a L<Facebook::Graph::Publish::Post> object, which can be used to publish data to a user's feed/wall.
+
+=head3 id
+
+Optionally provide an object id to place it on. Requires that you have administrative access to that page/object.
 
 
 =head2 add_like ( id )
@@ -410,9 +421,14 @@ Creates a L<Facebook::Graph::Publish::Note> object, which can be used to publish
 Creates a L<Facebook::Graph::Publish::Link> object, which can be used to publish links.
 
 
-=head2 add_event ( )
+=head2 add_event ( [id] )
 
 Creates a L<Facebook::Graph::Publish::Event> object, which can be used to publish events.
+
+=head3 id
+
+Optionally provide an object id to place it on. Requires that you have administrative access to that page/object.
+
 
 
 =head2 rsvp_maybe ( id )
@@ -472,14 +488,12 @@ B<NOTE:> To get this passed to your app you must enable it in your migration set
 
 =head1 EXCEPTIONS
 
-This module throws exceptions when it encounters a problem. The exceptions are an array reference. The first element is an HTTP status code. The second element is a human readable string. The third element is the exception type as identified by the Facebook API, or if something terrible went wrong C<Unknown>. For example:
-
- [400, 'Could not execute request (https://graph.facebook.com?fields=): GraphMethodException - Unsupported get request.', 'GraphMethodException']
+This module throws exceptions when it encounters a problem. See L<Facebook::Graph::Exception> for details.
 
 
 =head1 TODO
 
-I still need to add publishing albums/photos, deleting of content, impersonation, and analytics to have a feature complete API. Would also like to figure out inbox stuff, but it doesn't seem to be documented. In addition, the module could use a lot more tests.
+I still need to add publishing albums/photos, deleting of content, impersonation, and analytics to have a feature complete API. In addition, the module could use a lot more tests.
 
 
 =head1 PREREQS
@@ -494,6 +508,7 @@ L<DateTime::Format::Strptime>
 L<MIME::Base64::URLSafe>
 L<Digest::SHA>
 L<URI::Encode>
+L<Exception::Class>
 
 B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
 

@@ -25,6 +25,7 @@ my %WriteMakefileArgs = (
     'DateTime' => '0.61',
     'DateTime::Format::Strptime' => '1.4000',
     'Digest::SHA' => '5.47',
+    'Exception::Class' => '1.32',
     'JSON' => '2.16',
     'LWP' => '5.836',
     'MIME::Base64::URLSafe' => '0.01',
@@ -32,7 +33,7 @@ my %WriteMakefileArgs = (
     'URI' => '1.54',
     'URI::Encode' => '0.02'
   },
-  'VERSION' => '0.0705',
+  'VERSION' => '1.0000',
   'test' => {
     'TESTS' => 't/*.t'
   }

@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Note;
 BEGIN {
-  $Facebook::Graph::Publish::Note::VERSION = '0.0705';
+  $Facebook::Graph::Publish::Note::VERSION = '1.0000';
 }
 
 use Any::Moose;
@@ -36,10 +36,10 @@ around get_post_params => sub {
     my ($orig, $self) = @_;
     my $post = $orig->($self);
     if ($self->has_message) {
-        $post->{message} = $self->message;
+        push @$post, message => $self->message;
     }
     if ($self->has_subject) {
-        $post->{subject} = $self->subject;
+        push @$post, subject => $self->subject;
     }
     return $post;
 };
@@ -55,7 +55,7 @@ Facebook::Graph::Publish::Note - Add a note to a user's list of notes.
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 SYNOPSIS
 

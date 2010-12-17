@@ -1,10 +1,11 @@
 package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Response::VERSION = '0.0705';
+  $Facebook::Graph::Response::VERSION = '1.0000';
 }
 
 use Any::Moose;
 use JSON;
+use Facebook::Graph::Exception;
 
 has response => (
     is      => 'ro',
@@ -33,11 +34,20 @@ has as_json => (
             my $message = $response->message;
             my $error = eval { JSON->new->decode($response->content) };
             my $type = 'Unknown';
+            my $fberror = 'Unknown';
             unless ($@) {
+                $fberror = $error->{error}{message};
                 $message = $error->{error}{type} . ' - ' . $error->{error}{message};
                 $type = $error->{error}{type};
             }
-            confess [$response->code, 'Could not execute request ('.$response->request->uri->as_string.'): '.$message, $type];
+            Facebook::Graph::Exception::RPC->throw(
+                error               => 'Could not execute request ('.$response->request->uri->as_string.'): '.$message,
+                uri                 => $response->request->uri->as_string,
+                http_code           => $response->code,
+                http_message        => $response->message,
+                facebook_message    => $fberror,
+                facebook_type       => $type,
+            );
         }
     },
 );
@@ -60,7 +70,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 DESCRIPTION
 

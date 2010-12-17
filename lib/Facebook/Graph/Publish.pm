@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish;
 BEGIN {
-  $Facebook::Graph::Publish::VERSION = '0.0705';
+  $Facebook::Graph::Publish::VERSION = '1.0000';
 }
 
 use Any::Moose;
@@ -33,11 +33,11 @@ sub to {
 
 sub get_post_params {
     my $self = shift;
-    my %post;
+    my @post;
     if ($self->has_access_token) {
-        $post{access_token} = uri_decode($self->access_token);
+        push @post, access_token => uri_decode($self->access_token);
     }
-    return \%post;
+    return \@post;
 }
 
 sub publish {
@@ -62,7 +62,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 DESCRIPTION
 

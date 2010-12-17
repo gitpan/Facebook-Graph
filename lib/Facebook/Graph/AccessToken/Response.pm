@@ -1,11 +1,12 @@
 package Facebook::Graph::AccessToken::Response;
 BEGIN {
-  $Facebook::Graph::AccessToken::Response::VERSION = '0.0705';
+  $Facebook::Graph::AccessToken::Response::VERSION = '1.0000';
 }
 
 use Any::Moose;
 use URI;
 use URI::QueryParam;
+use Facebook::Graph::Exception;
 
 has response => (
     is      => 'ro',
@@ -22,7 +23,14 @@ has token => (
             return URI->new('?'.$response->content)->query_param('access_token');
         }
         else {
-            confess [$response->code, 'Could not fetch access token: '.$response->message]
+            Facebook::Graph::Exception::RPC->throw(
+                error               => 'Could not fetch access token: '.$response->message,
+                uri                 => $response->request->uri->as_string,
+                http_code           => $response->code,
+                http_message        => $response->message,
+                facebook_message    => 'Could not fetch access token.',
+                facebook_type       => 'None',
+            );
         }
     }
 );
@@ -37,7 +45,14 @@ has expires => (
             return URI->new('?'.$response->content)->query_param('expires');
         }
         else {
-            confess [$response->code, 'Could not fetch access token: '.$response->message]
+            Facebook::Graph::Exception::RPC->throw(
+                error               => 'Could not fetch access token: '.$response->message,
+                uri                 => $response->request->uri->as_string,
+                http_code           => $response->code,
+                http_message        => $response->message,
+                facebook_message    => 'Could not fetch access token.',
+                facebook_type       => 'None',
+            );
         }
     }
 );
@@ -51,7 +66,7 @@ Facebook::Graph::AccessToken::Response - The Facebook access token request respo
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 Description
 

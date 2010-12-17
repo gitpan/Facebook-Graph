@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Event;
 BEGIN {
-  $Facebook::Graph::Publish::Event::VERSION = '0.0705';
+  $Facebook::Graph::Publish::Event::VERSION = '1.0000';
 }
 
 use Any::Moose;
@@ -72,21 +72,24 @@ sub set_end_time {
 around get_post_params => sub {
     my ($orig, $self) = @_;
     my $post = $orig->($self);
+    unless ($self->object_name eq 'me') {
+        push @$post, page_id => $self->object_name;
+    }
     if ($self->has_name) {
-        $post->{name} = $self->name;
+        push @$post, name => $self->name;
     }
     if ($self->has_description) {
-        $post->{description} = $self->description;
+        push @$post, description => $self->description;
     }
     if ($self->has_location) {
-        $post->{location} = $self->location;
+        push @$post, location => $self->location;
     }
     my $strp = DateTime::Format::Strptime->new(pattern => '%FT %T%z');
     if ($self->has_start_time) {
-        $post->{start_time} = $strp->format_datetime($self->start_time);
+        push @$post, start_time => $strp->format_datetime($self->start_time);
     }
     if ($self->has_end_time) {
-        $post->{end_time} = $strp->format_datetime($self->end_time);
+        push @$post, end_time => $strp->format_datetime($self->end_time);
     }
     return $post;
 };
@@ -102,7 +105,7 @@ Facebook::Graph::Publish::Event - Add an event.
 
 =head1 VERSION
 
-version 0.0705
+version 1.0000
 
 =head1 SYNOPSIS
 
