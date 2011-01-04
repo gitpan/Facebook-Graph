@@ -1,6 +1,6 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '1.0000';
+  $Facebook::Graph::Query::VERSION = '1.0100';
 }
 
 use Any::Moose;
@@ -89,6 +89,12 @@ sub find {
 
 sub search {
     my ($self, $query, $type) = @_;
+    $self->search_query($query);
+    return ($type) ? $self->from($type) : $self;
+}
+
+sub from {
+    my ($self, $type) = @_;
     if ($type eq 'my_news') {
         $self->object_name('me/home');
     }
@@ -96,7 +102,6 @@ sub search {
         $self->object_name('search');
         $self->search_type($type);
     }
-    $self->search_query($query);
     return $self;
 }
 
@@ -197,7 +202,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 1.0000
+version 1.0100
 
 =head1 SYNOPSIS
 
@@ -210,6 +215,15 @@ version 1.0000
  
  my $sarah_bownds = $fb->find('sarahbownds')
     ->select_fields(qw(id name))
+    ->request
+    ->as_hashref;
+
+ # this one would require an access token
+ my $new_years_posts = $fb->query
+    ->from('posts')
+    ->where_since('1 January 2011')
+    ->where_until('2 January 2011')
+    ->limit(25)
     ->request
     ->as_hashref;
 
@@ -251,17 +265,15 @@ B<Example:> For user "Sarah Bownds" you could use either her profile id C<sarahb
 
 
 
-=head2 search ( query, type )
+=head2 from ( context )
 
-Perform a keyword search on a group of items.
 
-=head3 query
 
-They keywords to search by.
+If you prefer to search by keyword see the C<search> method.
 
-=head3 type
+=head3 context
 
-One of the following types:
+One of the following contexts:
 
 =over
 
@@ -288,6 +300,23 @@ All events.
 =item group
 
 All groups.
+
+
+
+
+=head2 search ( query, context )
+
+Perform a keyword search on a group of items. 
+
+If you prefer not to search by keyword see the C<from> method.
+
+=head3 query
+
+They keywords to search by.
+
+=head3 context
+
+See the C<context> param in the C<from> method.
 
 =back
 

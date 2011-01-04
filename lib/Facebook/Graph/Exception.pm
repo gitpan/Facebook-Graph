@@ -1,6 +1,6 @@
 package Facebook::Graph::Exception;
 BEGIN {
-  $Facebook::Graph::Exception::VERSION = '1.0000';
+  $Facebook::Graph::Exception::VERSION = '1.0100';
 }
 
 
@@ -30,7 +30,7 @@ Facebook::Graph::Exception - The exceptions thrown by this module.
 
 =head1 VERSION
 
-version 1.0000
+version 1.0100
 
 =head1 Description
 
