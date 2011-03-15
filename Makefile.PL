@@ -24,7 +24,6 @@ my %WriteMakefileArgs = (
     'Crypt::SSLeay' => '0.57',
     'DateTime' => '0.61',
     'DateTime::Format::Strptime' => '1.4000',
-    'Digest::SHA' => '5.47',
     'Exception::Class' => '1.32',
     'JSON' => '2.16',
     'LWP' => '5.836',
@@ -33,7 +32,7 @@ my %WriteMakefileArgs = (
     'URI' => '1.54',
     'URI::Encode' => '0.02'
   },
-  'VERSION' => '1.0100',
+  'VERSION' => '1.0200',
   'test' => {
     'TESTS' => 't/*.t'
   }

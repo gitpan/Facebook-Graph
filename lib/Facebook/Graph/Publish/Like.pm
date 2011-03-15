@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Like;
 BEGIN {
-  $Facebook::Graph::Publish::Like::VERSION = '1.0100';
+  $Facebook::Graph::Publish::Like::VERSION = '1.0200';
 }
 
 use Any::Moose;
@@ -18,7 +18,7 @@ Facebook::Graph::Publish::Like - Mark a post as something you like.
 
 =head1 VERSION
 
-version 1.0100
+version 1.0200
 
 =head1 SYNOPSIS
 

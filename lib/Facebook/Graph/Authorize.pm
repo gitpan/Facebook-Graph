@@ -1,6 +1,6 @@
 package Facebook::Graph::Authorize;
 BEGIN {
-  $Facebook::Graph::Authorize::VERSION = '1.0100';
+  $Facebook::Graph::Authorize::VERSION = '1.0200';
 }
 
 use Any::Moose;
@@ -67,7 +67,7 @@ Facebook::Graph::Authorize - Authorizing an app with Facebook
 
 =head1 VERSION
 
-version 1.0100
+version 1.0200
 
 =head1 SYNOPSIS
 

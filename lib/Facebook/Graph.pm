@@ -1,10 +1,9 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '1.0100';
+  $Facebook::Graph::VERSION = '1.0200';
 }
 
 use Any::Moose;
-use Digest::SHA qw(hmac_sha256);
 use MIME::Base64::URLSafe;
 use JSON;
 use Facebook::Graph::AccessToken;
@@ -12,6 +11,7 @@ use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
 use Facebook::Graph::Picture;
 use Facebook::Graph::Publish::Post;
+use Facebook::Graph::Publish::Checkin;
 use Facebook::Graph::Publish::Like;
 use Facebook::Graph::Publish::Comment;
 use Facebook::Graph::Publish::Note;
@@ -43,7 +43,7 @@ has access_token => (
 
 sub parse_signed_request {
     my ($self, $signed_request) = @_;
-
+    require Digest::SHA;
     my ($encoded_sig, $payload) = split(/\./, $signed_request);
 
 	my $sig = urlsafe_b64decode($encoded_sig);
@@ -53,7 +53,7 @@ sub parse_signed_request {
         Facebook::Graph::Exception::General->throw( error => "Unknown algorithm. Expected HMAC-SHA256");
     }
 
-    my $expected_sig = hmac_sha256($payload, $self->secret);
+    my $expected_sig = Digest::SHA::hmac_sha256($payload, $self->secret);
     if ($sig ne $expected_sig) {
         Facebook::Graph::Exception::General->throw( error => "Bad Signed JSON signature!");
     }
@@ -126,6 +126,21 @@ sub add_post {
         $params{secret} = $self->secret;
     }
     return Facebook::Graph::Publish::Post->new( %params );
+}
+
+sub add_checkin {
+    my ($self, $object_name) = @_;
+    my %params;
+    if ($object_name) {
+        $params{object_name} = $object_name;
+    }
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Checkin->new( %params );
 }
 
 sub add_like {
@@ -248,7 +263,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0100
+version 1.0200
 
 =head1 SYNOPSIS
 
@@ -266,6 +281,12 @@ Or better yet:
     ->as_hashref;
     
  my $sarahs_picture_uri = $fb->picture('sarahbownds')->get_large->uri_as_string;
+
+Or fetching a response from a URI you already have:
+
+ my $response = $fb->query
+    ->request('https://graph.facebook.com/btaylor')
+    ->as_hashref;
  
  
 =head2 Building A Privileged App
@@ -393,6 +414,15 @@ Creates a L<Facebook::Graph::Publish::Post> object, which can be used to publish
 Optionally provide an object id to place it on. Requires that you have administrative access to that page/object.
 
 
+=head2 add_checkin ( [ id ] )
+
+Creates a L<Facebook::Graph::Publish::Checkin> object, which can be used to publish a checkin to a location.
+
+=head3 id
+
+Optionally provide an user id to check in. Requires that you have administrative access to that user.
+
+
 =head2 add_like ( id )
 
 Creates a L<Facebook::Graph::Publish::Like> object to tell everyone about a post you like.
@@ -506,12 +536,14 @@ L<Crypt::SSLeay>
 L<DateTime>
 L<DateTime::Format::Strptime>
 L<MIME::Base64::URLSafe>
-L<Digest::SHA>
 L<URI::Encode>
 L<Exception::Class>
 
 B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
 
+=head2 Optional
+
+L<Digest::SHA> is used for signed requests. If you don't plan on using the signed request feature, then you do not need to install Digest::SHA.
 
 =head1 SUPPORT
 

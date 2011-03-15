@@ -21,7 +21,6 @@ requires:
   Crypt::SSLeay: 0.57
   DateTime: 0.61
   DateTime::Format::Strptime: 1.4000
-  Digest::SHA: 5.47
   Exception::Class: 1.32
   JSON: 2.16
   LWP: 5.836
@@ -32,4 +31,4 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 1.0100
+version: 1.0200

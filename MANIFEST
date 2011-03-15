@@ -45,6 +45,7 @@ lib/Facebook/Graph/Cookbook/Recipe2.pod
 lib/Facebook/Graph/Exception.pm
 lib/Facebook/Graph/Picture.pm
 lib/Facebook/Graph/Publish.pm
+lib/Facebook/Graph/Publish/Checkin.pm
 lib/Facebook/Graph/Publish/Comment.pm
 lib/Facebook/Graph/Publish/Event.pm
 lib/Facebook/Graph/Publish/Like.pm
