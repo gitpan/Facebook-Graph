@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '1.0200';
+  $Facebook::Graph::VERSION = '1.0300';
 }
 
 use Any::Moose;
@@ -20,7 +20,7 @@ use Facebook::Graph::Publish::Event;
 use Facebook::Graph::Publish::RSVPMaybe;
 use Facebook::Graph::Publish::RSVPAttending;
 use Facebook::Graph::Publish::RSVPDeclined;
-use Facebook::Graph::Exception;
+use Ouch;
 
 has app_id => (
     is      => 'ro',
@@ -50,12 +50,12 @@ sub parse_signed_request {
     my $data = JSON->new->decode(urlsafe_b64decode($payload));
 
     if (uc($data->{'algorithm'}) ne "HMAC-SHA256") {
-        Facebook::Graph::Exception::General->throw( error => "Unknown algorithm. Expected HMAC-SHA256");
+        ouch '500', 'Unknown algorithm. Expected HMAC-SHA256';
     }
 
     my $expected_sig = Digest::SHA::hmac_sha256($payload, $self->secret);
     if ($sig ne $expected_sig) {
-        Facebook::Graph::Exception::General->throw( error => "Bad Signed JSON signature!");
+        ouch '500', 'Bad Signed JSON signature!';
     }
     return $data;
 }
@@ -263,7 +263,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0200
+version 1.0300
 
 =head1 SYNOPSIS
 
@@ -518,7 +518,16 @@ B<NOTE:> To get this passed to your app you must enable it in your migration set
 
 =head1 EXCEPTIONS
 
-This module throws exceptions when it encounters a problem. See L<Facebook::Graph::Exception> for details.
+This module throws exceptions when it encounters a problem. It uses L<Ouch> to throw the exception, and the Exception typically takes 3 parts: code, message, and a data portion that is the URI that was originally requested. For example:
+
+ eval { $fb->call_some_method };
+ if (kiss 500) {
+   say "error: ". $@->message;
+   say "uri: ".$@->data;
+ }
+ else {
+   throw $@; # rethrow the error
+ }
 
 
 =head1 TODO
@@ -531,15 +540,14 @@ I still need to add publishing albums/photos, deleting of content, impersonation
 L<Any::Moose>
 L<JSON>
 L<LWP>
+L<LWP::Protocol::https>
+L<Mozilla::CA>
 L<URI>
-L<Crypt::SSLeay>
 L<DateTime>
 L<DateTime::Format::Strptime>
 L<MIME::Base64::URLSafe>
 L<URI::Encode>
-L<Exception::Class>
-
-B<NOTE:> This module requires SSL to function, but on some systems L<Crypt::SSLeay> can be difficult to install. You may optionally choose to install L<IO::Socket::SSL> instead and it will provide the same function. Unfortunately that means you'll need to C<force> Facebook::Graph to install if you do not have C<Crypt::SSLeay> installed.
+L<Ouch>
 
 =head2 Optional
 

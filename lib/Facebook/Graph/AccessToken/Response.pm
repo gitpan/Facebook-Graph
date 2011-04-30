@@ -1,12 +1,12 @@
 package Facebook::Graph::AccessToken::Response;
 BEGIN {
-  $Facebook::Graph::AccessToken::Response::VERSION = '1.0200';
+  $Facebook::Graph::AccessToken::Response::VERSION = '1.0300';
 }
 
 use Any::Moose;
 use URI;
 use URI::QueryParam;
-use Facebook::Graph::Exception;
+use Ouch;
 
 has response => (
     is      => 'ro',
@@ -23,14 +23,7 @@ has token => (
             return URI->new('?'.$response->content)->query_param('access_token');
         }
         else {
-            Facebook::Graph::Exception::RPC->throw(
-                error               => 'Could not fetch access token: '.$response->message,
-                uri                 => $response->request->uri->as_string,
-                http_code           => $response->code,
-                http_message        => $response->message,
-                facebook_message    => 'Could not fetch access token.',
-                facebook_type       => 'None',
-            );
+            ouch $response->code, 'Could not fetch access token: '.$response->message, $response->request->uri->as_string;
         }
     }
 );
@@ -45,14 +38,7 @@ has expires => (
             return URI->new('?'.$response->content)->query_param('expires');
         }
         else {
-            Facebook::Graph::Exception::RPC->throw(
-                error               => 'Could not fetch access token: '.$response->message,
-                uri                 => $response->request->uri->as_string,
-                http_code           => $response->code,
-                http_message        => $response->message,
-                facebook_message    => 'Could not fetch access token.',
-                facebook_type       => 'None',
-            );
+            ouch $response->code, 'Could not fetch access token: '.$response->message, $response->request->uri->as_string;
         }
     }
 );
@@ -66,7 +52,7 @@ Facebook::Graph::AccessToken::Response - The Facebook access token request respo
 
 =head1 VERSION
 
-version 1.0200
+version 1.0300
 
 =head1 Description
 

@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Post;
 BEGIN {
-  $Facebook::Graph::Publish::Post::VERSION = '1.0200';
+  $Facebook::Graph::Publish::Post::VERSION = '1.0300';
 }
 
 use Any::Moose;
@@ -185,6 +185,18 @@ sub set_privacy {
     return $self;
 }
 
+has 'properties' => (
+    is          => 'rw',
+    predicate   => 'has_properties'
+);
+
+sub set_properties {
+    my $self = shift;
+    my $properties = @_ % 2 ? shift @_ : { @_ };
+    $self->properties($properties);
+    return $self;
+}
+
 around get_post_params => sub {
     my ($orig, $self) = @_;
     my $post = $orig->($self);
@@ -219,6 +231,9 @@ around get_post_params => sub {
         $privacy{value} = $self->privacy;
         push @$post, privacy => JSON->new->encode(\%privacy);
     }
+    if ($self->has_properties) {
+        push @$post, properties => JSON->new->encode($self->properties);
+    }
     return $post;
 };
 
@@ -233,7 +248,7 @@ Facebook::Graph::Publish::Post - Publish to a user's wall.
 
 =head1 VERSION
 
-version 1.0200
+version 1.0300
 
 =head1 SYNOPSIS
 
@@ -366,6 +381,12 @@ The URI of the action.
 =head2 set_privacy ( setting, options )
 
 A completely optional privacy setting. 
+
+=head2 set_properties ( properties )
+
+"property" values assigned when the post is published. This is typically rendered as a list of links.
+
+    $post->set_properties( { "search engine:" => { "text" => "Google", "href" => "http://www.google.com/" } } );
 
 =head3 setting
 

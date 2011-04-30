@@ -4,7 +4,7 @@ use warnings;
 
 
 
-use ExtUtils::MakeMaker 6.31;
+use ExtUtils::MakeMaker 6.30;
 
 
 
@@ -13,7 +13,7 @@ my %WriteMakefileArgs = (
   'AUTHOR' => 'JT Smith <jt@plainblack.com>',
   'BUILD_REQUIRES' => {},
   'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.31'
+    'ExtUtils::MakeMaker' => '6.30'
   },
   'DISTNAME' => 'Facebook-Graph',
   'EXE_FILES' => [],
@@ -21,18 +21,19 @@ my %WriteMakefileArgs = (
   'NAME' => 'Facebook::Graph',
   'PREREQ_PM' => {
     'Any::Moose' => '0.13',
-    'Crypt::SSLeay' => '0.57',
     'DateTime' => '0.61',
     'DateTime::Format::Strptime' => '1.4000',
-    'Exception::Class' => '1.32',
     'JSON' => '2.16',
-    'LWP' => '5.836',
+    'LWP' => '6.02',
+    'LWP::Protocol::https' => '6.02',
     'MIME::Base64::URLSafe' => '0.01',
+    'Mozilla::CA' => '20110409',
+    'Ouch' => '0.0400',
     'Test::More' => '0',
     'URI' => '1.54',
     'URI::Encode' => '0.02'
   },
-  'VERSION' => '1.0200',
+  'VERSION' => '1.0300',
   'test' => {
     'TESTS' => 't/*.t'
   }
