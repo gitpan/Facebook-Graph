@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '1.0300';
+  $Facebook::Graph::VERSION = '1.0301';
 }
 
 use Any::Moose;
@@ -21,6 +21,7 @@ use Facebook::Graph::Publish::RSVPMaybe;
 use Facebook::Graph::Publish::RSVPAttending;
 use Facebook::Graph::Publish::RSVPDeclined;
 use Ouch;
+use LWP::UserAgent;
 
 has app_id => (
     is      => 'ro',
@@ -40,6 +41,13 @@ has access_token => (
     predicate   => 'has_access_token',
 );
 
+has ua => (
+    is      => 'rw',
+    lazy    => 1,
+    default => sub {
+        LWP::UserAgent->new;
+    },
+);
 
 sub parse_signed_request {
     my ($self, $signed_request) = @_;
@@ -67,6 +75,7 @@ sub request_access_token {
         postback        => $self->postback,
         secret          => $self->secret,
         app_id          => $self->app_id,
+        ua              => $self->ua,
     )->request;
     $self->access_token($token->token);
     return $token;
@@ -78,6 +87,7 @@ sub convert_sessions {
         secret          => $self->secret,
         app_id          => $self->app_id,
         sessions        => $sessions,
+        ua              => $self->ua,
         )
         ->request
         ->as_hashref;
@@ -98,7 +108,7 @@ sub fetch {
 
 sub query {
     my ($self) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
     }
@@ -115,7 +125,7 @@ sub picture {
 
 sub add_post {
     my ($self, $object_name) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($object_name) {
         $params{object_name} = $object_name;
     }
@@ -130,7 +140,7 @@ sub add_post {
 
 sub add_checkin {
     my ($self, $object_name) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($object_name) {
         $params{object_name} = $object_name;
     }
@@ -147,6 +157,7 @@ sub add_like {
     my ($self, $object_name) = @_;
     my %params = (
         object_name => $object_name,
+        ua          => $self->ua,
     );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
@@ -173,7 +184,7 @@ sub add_comment {
 
 sub add_note {
     my ($self) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
     }
@@ -185,7 +196,7 @@ sub add_note {
 
 sub add_link {
     my ($self) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
     }
@@ -197,7 +208,7 @@ sub add_link {
 
 sub add_event {
     my ($self, $object_name) = @_;
-    my %params;
+    my %params = ( ua => $self->ua );
     if ($object_name) {
         $params{object_name} = $object_name;
     }
@@ -214,6 +225,7 @@ sub rsvp_maybe {
     my ($self, $object_name) = @_;
     my %params = (
         object_name => $object_name,
+        ua          => $self->ua,
     );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
@@ -228,6 +240,7 @@ sub rsvp_attending {
     my ($self, $object_name) = @_;
     my %params = (
         object_name => $object_name,
+        ua          => $self->ua,
     );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
@@ -242,6 +255,7 @@ sub rsvp_declined {
     my ($self, $object_name) = @_;
     my %params = (
         object_name => $object_name,
+        ua          => $self->ua,
     );
     if ($self->has_access_token) {
         $params{access_token} = $self->access_token;
@@ -263,7 +277,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0300
+version 1.0301
 
 =head1 SYNOPSIS
 

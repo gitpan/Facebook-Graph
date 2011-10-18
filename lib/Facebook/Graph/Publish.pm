@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish;
 BEGIN {
-  $Facebook::Graph::Publish::VERSION = '1.0300';
+  $Facebook::Graph::Publish::VERSION = '1.0301';
 }
 
 use Any::Moose;
@@ -25,6 +25,10 @@ has object_name => (
     default     => 'me',
 );
 
+has ua => (
+    is => 'rw',
+);
+
 sub to {
     my ($self, $object_name) = @_;
     $self->object_name($object_name);
@@ -44,7 +48,7 @@ sub publish {
     my ($self) = @_;
     my $uri = $self->uri;
     $uri->path($self->object_name.$self->object_path);
-    my $response = LWP::UserAgent->new->post($uri, $self->get_post_params);
+    my $response = ($self->ua || LWP::UserAgent->new)->post($uri, $self->get_post_params);
     my %params = (response => $response);
     if ($self->has_secret) {
         $params{secret} = $self->secret;
@@ -62,7 +66,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0300
+version 1.0301
 
 =head1 DESCRIPTION
 

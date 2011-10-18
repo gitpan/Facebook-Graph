@@ -1,6 +1,6 @@
 package Facebook::Graph::Session;
 BEGIN {
-  $Facebook::Graph::Session::VERSION = '1.0300';
+  $Facebook::Graph::Session::VERSION = '1.0301';
 }
 
 use Any::Moose;
@@ -23,6 +23,10 @@ has sessions => (
     required=> 1,
 );
 
+has ua => (
+    is => 'rw',
+);
+
 sub uri_as_string {
     my ($self) = @_;
     my $uri = $self->uri;
@@ -38,7 +42,7 @@ sub uri_as_string {
 
 sub request {
     my ($self) = @_;
-    my $response = LWP::UserAgent->new->get($self->uri_as_string);
+    my $response = ($self->ua || LWP::UserAgent->new)->get($self->uri_as_string);
     return Facebook::Graph::Response->new(response => $response);
 }
 
@@ -53,7 +57,7 @@ Facebook::Graph::Session - Convert old API sessions into Graph API access_tokens
 
 =head1 VERSION
 
-version 1.0300
+version 1.0301
 
 =head1 SYNOPSIS
 

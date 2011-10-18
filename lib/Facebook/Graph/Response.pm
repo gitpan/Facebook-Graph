@@ -1,6 +1,6 @@
 package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Response::VERSION = '1.0300';
+  $Facebook::Graph::Response::VERSION = '1.0301';
 }
 
 use Any::Moose;
@@ -59,7 +59,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 1.0300
+version 1.0301
 
 =head1 DESCRIPTION
 
