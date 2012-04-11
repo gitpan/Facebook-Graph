@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken;
 BEGIN {
-  $Facebook::Graph::AccessToken::VERSION = '1.0301';
+  $Facebook::Graph::AccessToken::VERSION = '1.0400';
 }
 
 use Any::Moose;
@@ -62,7 +62,7 @@ Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 =head1 VERSION
 
-version 1.0301
+version 1.0400
 
 =head1 SYNOPSIS
 

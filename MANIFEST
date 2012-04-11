@@ -50,6 +50,7 @@ lib/Facebook/Graph/Publish/Event.pm
 lib/Facebook/Graph/Publish/Like.pm
 lib/Facebook/Graph/Publish/Link.pm
 lib/Facebook/Graph/Publish/Note.pm
+lib/Facebook/Graph/Publish/Photo.pm
 lib/Facebook/Graph/Publish/Post.pm
 lib/Facebook/Graph/Publish/RSVPAttending.pm
 lib/Facebook/Graph/Publish/RSVPDeclined.pm

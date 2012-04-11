@@ -30,10 +30,9 @@ my %WriteMakefileArgs = (
     'Mozilla::CA' => '20110409',
     'Ouch' => '0.0400',
     'Test::More' => '0',
-    'URI' => '1.54',
-    'URI::Encode' => '0.02'
+    'URI' => '1.54'
   },
-  'VERSION' => '1.0301',
+  'VERSION' => '1.0400',
   'test' => {
     'TESTS' => 't/*.t'
   }

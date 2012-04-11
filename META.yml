@@ -28,8 +28,7 @@ requires:
   Ouch: 0.0400
   Test::More: 0
   URI: 1.54
-  URI::Encode: 0.02
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 1.0301
+version: 1.0400

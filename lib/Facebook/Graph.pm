@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '1.0301';
+  $Facebook::Graph::VERSION = '1.0400';
 }
 
 use Any::Moose;
@@ -11,6 +11,7 @@ use Facebook::Graph::Authorize;
 use Facebook::Graph::Query;
 use Facebook::Graph::Picture;
 use Facebook::Graph::Publish::Post;
+use Facebook::Graph::Publish::Photo;
 use Facebook::Graph::Publish::Checkin;
 use Facebook::Graph::Publish::Like;
 use Facebook::Graph::Publish::Comment;
@@ -106,6 +107,11 @@ sub fetch {
     return $self->query->find($object_name)->request->as_hashref;
 }
 
+sub fql {
+    my ($self, $query) = @_;
+    return $self->query->find('fql')->search($query)->request->as_hashref;
+}
+
 sub query {
     my ($self) = @_;
     my %params = ( ua => $self->ua );
@@ -136,6 +142,21 @@ sub add_post {
         $params{secret} = $self->secret;
     }
     return Facebook::Graph::Publish::Post->new( %params );
+}
+
+sub add_photo {
+    my ($self, $object_name) = @_;
+    my %params = ( ua => $self->ua );
+    if ($object_name) {
+        $params{object_name} = $object_name;
+    }
+    if ($self->has_access_token) {
+        $params{access_token} = $self->access_token;
+    }
+    if ($self->has_secret) {
+        $params{secret} = $self->secret;
+    }
+    return Facebook::Graph::Publish::Photo->new( %params );
 }
 
 sub add_checkin {
@@ -277,7 +298,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0301
+version 1.0400
 
 =head1 SYNOPSIS
 
@@ -373,6 +394,10 @@ The application secret that you get from Facebook after registering your applica
 The URI that Facebook should post your authorization code back to. Required if you'll be calling the C<request_access_token> or C<authorize> methods.
 
 B<NOTE:> It must be a sub URI of the URI that you put in the Application Settings > Connect > Connect URL field of your application's profile on Facebook.
+
+=item ua
+
+This allows you to pass in your own L<LWP::UserAgent> object. By default Facebook::Graph will just create one on the fly.
 
 =back
 
@@ -560,7 +585,6 @@ L<URI>
 L<DateTime>
 L<DateTime::Format::Strptime>
 L<MIME::Base64::URLSafe>
-L<URI::Encode>
 L<Ouch>
 
 =head2 Optional
