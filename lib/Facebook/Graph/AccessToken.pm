@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken;
 BEGIN {
-  $Facebook::Graph::AccessToken::VERSION = '1.0400';
+  $Facebook::Graph::AccessToken::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -62,7 +62,7 @@ Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -92,6 +92,6 @@ Makes a request to Facebook to fetch an access token. Returns a L<Facebook::Grap
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

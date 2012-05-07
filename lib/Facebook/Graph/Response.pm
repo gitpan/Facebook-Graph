@@ -1,6 +1,6 @@
 package Facebook::Graph::Response;
 BEGIN {
-  $Facebook::Graph::Response::VERSION = '1.0400';
+  $Facebook::Graph::Response::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -59,7 +59,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 DESCRIPTION
 
@@ -88,6 +88,6 @@ Direct access to the L<HTTP::Response> object.
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

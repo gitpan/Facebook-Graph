@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe1 - Building Privileged Applications
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 DESCRIPTION
 
@@ -203,6 +203,6 @@ For more recipes, check out the L<Facebook::Graph::Cookbook>.
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

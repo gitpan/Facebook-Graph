@@ -1,6 +1,6 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '1.0400';
+  $Facebook::Graph::Query::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -220,7 +220,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -431,6 +431,6 @@ Optionally pass in your own URI string and all the other options will be ignored
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

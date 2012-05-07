@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish;
 BEGIN {
-  $Facebook::Graph::Publish::VERSION = '1.0400';
+  $Facebook::Graph::Publish::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -66,7 +66,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 DESCRIPTION
 
@@ -74,6 +74,6 @@ This module shouldn't be used by you directly for any purpose.
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

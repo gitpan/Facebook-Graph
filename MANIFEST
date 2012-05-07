@@ -42,6 +42,7 @@ lib/Facebook/Graph/Authorize.pm
 lib/Facebook/Graph/Cookbook.pod
 lib/Facebook/Graph/Cookbook/Recipe1.pod
 lib/Facebook/Graph/Cookbook/Recipe2.pod
+lib/Facebook/Graph/Cookbook/Recipe3.pod
 lib/Facebook/Graph/Picture.pm
 lib/Facebook/Graph/Publish.pm
 lib/Facebook/Graph/Publish/Checkin.pm

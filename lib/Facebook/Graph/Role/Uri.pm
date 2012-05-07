@@ -1,6 +1,6 @@
 package Facebook::Graph::Role::Uri;
 BEGIN {
-  $Facebook::Graph::Role::Uri::VERSION = '1.0400';
+  $Facebook::Graph::Role::Uri::VERSION = '1.0401';
 }
 
 use Any::Moose 'Role';
@@ -19,7 +19,7 @@ Facebook::Graph::Role::Uri - The base URI for the Facebook Graph API.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 DESCRIPTION
 
@@ -27,6 +27,6 @@ Provides a C<uri> method in any class which returns a L<URI> object that points 
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

@@ -1,6 +1,6 @@
 package Facebook::Graph::Picture;
 BEGIN {
-  $Facebook::Graph::Picture::VERSION = '1.0400';
+  $Facebook::Graph::Picture::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -57,7 +57,7 @@ Facebook::Graph::Picture - Get the URI for the picture of any object.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -117,6 +117,6 @@ Returns a URI string based upon all the methods you've called so far on the quer
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

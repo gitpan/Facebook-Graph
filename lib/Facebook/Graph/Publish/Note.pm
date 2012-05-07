@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Note;
 BEGIN {
-  $Facebook::Graph::Publish::Note::VERSION = '1.0400';
+  $Facebook::Graph::Publish::Note::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -55,7 +55,7 @@ Facebook::Graph::Publish::Note - Add a note to a user's list of notes.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -107,6 +107,6 @@ Posts the data and returns a L<Facebook::Graph::Response> object. The response o
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

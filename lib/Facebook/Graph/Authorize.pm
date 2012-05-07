@@ -1,6 +1,6 @@
 package Facebook::Graph::Authorize;
 BEGIN {
-  $Facebook::Graph::Authorize::VERSION = '1.0400';
+  $Facebook::Graph::Authorize::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -67,7 +67,7 @@ Facebook::Graph::Authorize - Authorizing an app with Facebook
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -114,6 +114,6 @@ Returns a URI string to redirect the user back to Facebook.
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut

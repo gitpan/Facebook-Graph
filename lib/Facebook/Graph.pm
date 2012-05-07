@@ -1,6 +1,6 @@
 package Facebook::Graph;
 BEGIN {
-  $Facebook::Graph::VERSION = '1.0400';
+  $Facebook::Graph::VERSION = '1.0401';
 }
 
 use Any::Moose;
@@ -298,7 +298,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0400
+version 1.0401
 
 =head1 SYNOPSIS
 
@@ -616,6 +616,6 @@ JT Smith <jt_at_plainblack_dot_com>
 
 =head1 LEGAL
 
-Facebook::Graph is Copyright 2010 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
+Facebook::Graph is Copyright 2010 - 2012 Plain Black Corporation (L<http://www.plainblack.com>) and is licensed under the same terms as Perl itself.
 
 =cut
