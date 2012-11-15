@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook - A cookbook for Facebook::Graph
 
 =head1 VERSION
 
-version 1.0401
+version 1.0500
 
 =head1 DESCRIPTION
 
@@ -24,7 +24,7 @@ A fully functional Facebook::Graph app that publishes data to Facebook and reads
 
 =item L<Facebook::Graph::Cookbook::Recipe3> - Impersonation
 
-Shows you how to post as all the different pages under your control. 
+Shows you how to post as all the different pages under your control.
 
 =back
 

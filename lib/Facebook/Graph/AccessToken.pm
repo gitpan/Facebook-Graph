@@ -1,12 +1,12 @@
 package Facebook::Graph::AccessToken;
 BEGIN {
-  $Facebook::Graph::AccessToken::VERSION = '1.0401';
+  $Facebook::Graph::AccessToken::VERSION = '1.0500';
 }
 
 use Any::Moose;
 use Facebook::Graph::AccessToken::Response;
+use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
-use LWP::UserAgent;
 
 has app_id => (
     is      => 'ro',
@@ -28,10 +28,6 @@ has code => (
     required=> 1,
 );
 
-has ua => (
-    is => 'rw',
-);
-
 sub uri_as_string {
     my ($self) = @_;
     my $uri = $self->uri;
@@ -47,8 +43,9 @@ sub uri_as_string {
 
 sub request {
     my ($self) = @_;
-    my $response = ($self->ua || LWP::UserAgent->new)->get($self->uri_as_string);
-    return Facebook::Graph::AccessToken::Response->new(response => $response);
+    return Facebook::Graph::AccessToken::Response->new(
+        response => Facebook::Graph::Request->new->get($self->uri_as_string)->recv->response
+    );
 }
 
 no Any::Moose;
@@ -62,7 +59,7 @@ Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 =head1 VERSION
 
-version 1.0401
+version 1.0500
 
 =head1 SYNOPSIS
 

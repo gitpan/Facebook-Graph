@@ -1,9 +1,12 @@
 Changes
+FacebookGraph.komodoproject
 LICENSE
 MANIFEST
 META.yml
 Makefile.PL
 README
+author.t/authenticate.t
+author.t/batch_requests.t
 author.t/private_fetch.t
 author.t/publish_comment.t
 author.t/publish_event.t
@@ -39,6 +42,7 @@ lib/Facebook/Graph.pm
 lib/Facebook/Graph/AccessToken.pm
 lib/Facebook/Graph/AccessToken/Response.pm
 lib/Facebook/Graph/Authorize.pm
+lib/Facebook/Graph/BatchRequests.pm
 lib/Facebook/Graph/Cookbook.pod
 lib/Facebook/Graph/Cookbook/Recipe1.pod
 lib/Facebook/Graph/Cookbook/Recipe2.pod
@@ -57,6 +61,7 @@ lib/Facebook/Graph/Publish/RSVPAttending.pm
 lib/Facebook/Graph/Publish/RSVPDeclined.pm
 lib/Facebook/Graph/Publish/RSVPMaybe.pm
 lib/Facebook/Graph/Query.pm
+lib/Facebook/Graph/Request.pm
 lib/Facebook/Graph/Response.pm
 lib/Facebook/Graph/Role/Uri.pm
 lib/Facebook/Graph/Session.pm

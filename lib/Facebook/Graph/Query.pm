@@ -1,12 +1,11 @@
 package Facebook::Graph::Query;
 BEGIN {
-  $Facebook::Graph::Query::VERSION = '1.0401';
+  $Facebook::Graph::Query::VERSION = '1.0500';
 }
 
 use Any::Moose;
-use Facebook::Graph::Response;
+use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
-use LWP::UserAgent;
 use URI::Escape;
 
 has secret => (
@@ -78,10 +77,6 @@ has until => (
 has since => (
     is          => 'rw',
     predicate   => 'has_since',
-);
-
-has ua => (
-    is => 'rw',
 );
 
 sub limit_results {
@@ -200,14 +195,8 @@ sub uri_as_string {
 }
 
 sub request {
-    my ($self, $uri) = @_;
-    $uri ||= $self->uri_as_string;
-    my $response = ($self->ua || LWP::UserAgent->new)->get($uri);
-    my %params = (response => $response);
-    if ($self->has_secret) {
-        $params{secret} = $self->secret;
-    }
-    return Facebook::Graph::Response->new(%params);
+    my ($self) = @_;
+    return Facebook::Graph::Request->new->get($self->uri_as_string)->recv;
 }
 
 no Any::Moose;
@@ -220,7 +209,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 1.0401
+version 1.0500
 
 =head1 SYNOPSIS
 

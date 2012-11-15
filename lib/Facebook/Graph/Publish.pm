@@ -1,12 +1,12 @@
 package Facebook::Graph::Publish;
 BEGIN {
-  $Facebook::Graph::Publish::VERSION = '1.0401';
+  $Facebook::Graph::Publish::VERSION = '1.0500';
 }
 
 use Any::Moose;
-use Facebook::Graph::Response;
+use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
-use LWP::UserAgent;
+use AnyEvent::HTTP::LWP::UserAgent;
 use URI::Escape;
 
 has secret => (
@@ -23,10 +23,6 @@ has access_token => (
 has object_name => (
     is          => 'rw',
     default     => 'me',
-);
-
-has ua => (
-    is => 'rw',
 );
 
 sub to {
@@ -48,13 +44,9 @@ sub publish {
     my ($self) = @_;
     my $uri = $self->uri;
     $uri->path($self->object_name.$self->object_path);
-    my $response = ($self->ua || LWP::UserAgent->new)->post($uri, $self->get_post_params);
-    my %params = (response => $response);
-    if ($self->has_secret) {
-        $params{secret} = $self->secret;
-    }
-    return Facebook::Graph::Response->new(%params);
+    return Facebook::Graph::Request->new->post($uri, $self->get_post_params)->recv;
 }
+
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
@@ -66,7 +58,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0401
+version 1.0500
 
 =head1 DESCRIPTION
 
