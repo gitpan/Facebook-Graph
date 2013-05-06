@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::RSVPAttending;
-BEGIN {
-  $Facebook::Graph::Publish::RSVPAttending::VERSION = '1.0500';
+{
+  $Facebook::Graph::Publish::RSVPAttending::VERSION = '1.0501';
 }
 
 use Any::Moose;
@@ -18,7 +18,7 @@ Facebook::Graph::Publish::RSVPAttending - RSVP attending to an event.
 
 =head1 VERSION
 
-version 1.0500
+version 1.0501
 
 =head1 SYNOPSIS
 

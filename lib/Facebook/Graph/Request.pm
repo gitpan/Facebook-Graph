@@ -1,6 +1,6 @@
 package Facebook::Graph::Request;
-BEGIN {
-  $Facebook::Graph::Request::VERSION = '1.0500';
+{
+  $Facebook::Graph::Request::VERSION = '1.0501';
 }
 
 use Any::Moose;
@@ -22,9 +22,9 @@ has ua => (
 );
 
 sub post {
-    my ($self, $uri, $params) = @_;
+    my ($self, $uri, @params) = @_;
     my $cv = AnyEvent->condvar;
-    $self->ua->post_async($uri, $params)->cb(sub {
+    $self->ua->post_async($uri, @params)->cb(sub {
         $cv->send(Facebook::Graph::Response->new(response => shift->recv));
     });
     return $cv;
@@ -49,7 +49,7 @@ Facebook::Graph::Request - Handling posts to Facebook Graph.
 
 =head1 VERSION
 
-version 1.0500
+version 1.0501
 
 =head1 DESCRIPTION
 

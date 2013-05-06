@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Comment;
-BEGIN {
-  $Facebook::Graph::Publish::Comment::VERSION = '1.0500';
+{
+  $Facebook::Graph::Publish::Comment::VERSION = '1.0501';
 }
 
 use Any::Moose;
@@ -41,7 +41,7 @@ Facebook::Graph::Publish::Comment - Publish a comment on a post.
 
 =head1 VERSION
 
-version 1.0500
+version 1.0501
 
 =head1 SYNOPSIS
 

@@ -6,7 +6,7 @@ build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -18,7 +18,7 @@ no_index:
     - eg
 requires:
   Any::Moose: 0.13
-  AnyEvent::HTTP::LWP::UserAgent: 0.8
+  AnyEvent::HTTP::LWP::UserAgent: 0.08
   DateTime: 0.61
   DateTime::Format::Strptime: 1.4000
   JSON: 2.16
@@ -29,4 +29,18 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 1.0500
+version: 1.0501
+x_contributors:
+  - 'Andrew Grangaard <granny-github@ofb.net>'
+  - 'Chris Weyl <cweyl@alumni.drew.edu>'
+  - 'Daisuke Murase <typester@cpan.org>'
+  - 'Fayland Lam <fayland@gmail.com>'
+  - 'James Wright <james2vegas@aim.com>'
+  - 'Jason Wieland <jwieland@gmail.com>'
+  - 'Mark Carey <mark@mt-hacks.com>'
+  - 'Mark Stosberg <mark@stosberg.com>'
+  - 'Maroun NAJM <mnajm@cinemoz.com>'
+  - 'Sebastien Wernerus <s.wernerus@gmail.com>'
+  - 'Tim Heaney <oylenshpeegul@gmail.com>'
+  - 'mathieu viel <mathieu.viel@linkfluence.net>'
+  - 'root <root@li125-92.members.linode.com>'
