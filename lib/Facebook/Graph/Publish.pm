@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish;
 {
-  $Facebook::Graph::Publish::VERSION = '1.0501';
+  $Facebook::Graph::Publish::VERSION = '1.0502';
 }
 
 use Any::Moose;
@@ -58,7 +58,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0501
+version 1.0502
 
 =head1 DESCRIPTION
 

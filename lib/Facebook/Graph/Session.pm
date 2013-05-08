@@ -1,6 +1,6 @@
 package Facebook::Graph::Session;
 {
-  $Facebook::Graph::Session::VERSION = '1.0501';
+  $Facebook::Graph::Session::VERSION = '1.0502';
 }
 
 use Any::Moose;
@@ -51,7 +51,7 @@ Facebook::Graph::Session - Convert old API sessions into Graph API access_tokens
 
 =head1 VERSION
 
-version 1.0501
+version 1.0502
 
 =head1 SYNOPSIS
 

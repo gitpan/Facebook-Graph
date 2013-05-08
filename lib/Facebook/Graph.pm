@@ -1,6 +1,6 @@
 package Facebook::Graph;
 {
-  $Facebook::Graph::VERSION = '1.0501';
+  $Facebook::Graph::VERSION = '1.0502';
 }
 
 use Any::Moose;
@@ -290,7 +290,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0501
+version 1.0502
 
 =head1 SYNOPSIS
 

@@ -22,6 +22,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Any::Moose" => "0.13",
     "AnyEvent::HTTP::LWP::UserAgent" => "0.08",
+    "AnyEvent::TLS" => 0,
     "DateTime" => "0.61",
     "DateTime::Format::Strptime" => "1.4000",
     "JSON" => "2.16",
@@ -31,7 +32,7 @@ my %WriteMakefileArgs = (
     "URI" => "1.54"
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "1.0501",
+  "VERSION" => "1.0502",
   "test" => {
     "TESTS" => "t/*.t"
   }
