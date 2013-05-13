@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken::Response;
 {
-  $Facebook::Graph::AccessToken::Response::VERSION = '1.0502';
+  $Facebook::Graph::AccessToken::Response::VERSION = '1.0600';
 }
 
 use Any::Moose;
@@ -52,7 +52,7 @@ Facebook::Graph::AccessToken::Response - The Facebook access token request respo
 
 =head1 VERSION
 
-version 1.0502
+version 1.0600
 
 =head1 Description
 

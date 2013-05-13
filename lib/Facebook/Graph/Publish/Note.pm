@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Note;
 {
-  $Facebook::Graph::Publish::Note::VERSION = '1.0502';
+  $Facebook::Graph::Publish::Note::VERSION = '1.0600';
 }
 
 use Any::Moose;
@@ -55,7 +55,7 @@ Facebook::Graph::Publish::Note - Add a note to a user's list of notes.
 
 =head1 VERSION
 
-version 1.0502
+version 1.0600
 
 =head1 SYNOPSIS
 

@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe3 - Impersonation
 
 =head1 VERSION
 
-version 1.0502
+version 1.0600
 
 =head1 DESCRIPTION
 

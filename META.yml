@@ -30,7 +30,7 @@ requires:
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 1.0502
+version: 1.0600
 x_contributors:
   - 'Andrew Grangaard <granny-github@ofb.net>'
   - 'Chris Weyl <cweyl@alumni.drew.edu>'

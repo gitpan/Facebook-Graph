@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Photo;
 {
-  $Facebook::Graph::Publish::Photo::VERSION = '1.0502';
+  $Facebook::Graph::Publish::Photo::VERSION = '1.0600';
 }
 
 use Any::Moose;
@@ -68,7 +68,7 @@ Facebook::Graph::Publish::Photo - Publish Photos
 
 =head1 VERSION
 
-version 1.0502
+version 1.0600
 
 =head1 SYNOPSIS
 

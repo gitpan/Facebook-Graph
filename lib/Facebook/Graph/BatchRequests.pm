@@ -1,6 +1,6 @@
 package Facebook::Graph::BatchRequests;
 {
-  $Facebook::Graph::BatchRequests::VERSION = '1.0502';
+  $Facebook::Graph::BatchRequests::VERSION = '1.0600';
 }
 
 use Any::Moose;
@@ -68,7 +68,7 @@ Facebook::Graph::BatchRequests - Batch Requests
 
 =head1 VERSION
 
-version 1.0502
+version 1.0600
 
 =head1 SYNOPSIS
 
