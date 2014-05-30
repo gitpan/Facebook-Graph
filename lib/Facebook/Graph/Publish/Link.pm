@@ -1,8 +1,5 @@
 package Facebook::Graph::Publish::Link;
-{
-  $Facebook::Graph::Publish::Link::VERSION = '1.0600';
-}
-
+$Facebook::Graph::Publish::Link::VERSION = '1.0700';
 use Any::Moose;
 extends 'Facebook::Graph::Publish';
 
@@ -55,7 +52,7 @@ Facebook::Graph::Publish::Link - Add a link.
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 SYNOPSIS
 
@@ -95,7 +92,7 @@ Sets the URI to link to.
 
 =head3 uri
 
-A a URI.
+A URI.
 
 
 

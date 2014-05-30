@@ -1,8 +1,5 @@
 package Facebook::Graph::Publish::Post;
-{
-  $Facebook::Graph::Publish::Post::VERSION = '1.0600';
-}
-
+$Facebook::Graph::Publish::Post::VERSION = '1.0700';
 use Any::Moose;
 extends 'Facebook::Graph::Publish';
 
@@ -248,7 +245,7 @@ Facebook::Graph::Publish::Post - Publish to a user's wall.
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 SYNOPSIS
 
@@ -274,7 +271,7 @@ This module gives you quick and easy access to publish to a user's Facebook feed
 
 B<ATTENTION:> You must have the C<publish_stream> privilege to use this module.
 
-B<TIP:> Facebook seems to use these terms interchangibly: Feed, Post, News, Wall. So if you want to publish to a user's wall, this is the mechanism you use to do that.
+B<TIP:> Facebook seems to use these terms interchangeably: Feed, Post, News, Wall. So if you want to publish to a user's wall, this is the mechanism you use to do that.
 
 =head1 METHODS
 

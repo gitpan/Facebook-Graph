@@ -1,8 +1,5 @@
 package Facebook::Graph::Publish::Event;
-{
-  $Facebook::Graph::Publish::Event::VERSION = '1.0600';
-}
-
+$Facebook::Graph::Publish::Event::VERSION = '1.0700';
 use Any::Moose;
 extends 'Facebook::Graph::Publish';
 use DateTime;
@@ -105,7 +102,7 @@ Facebook::Graph::Publish::Event - Add an event.
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 SYNOPSIS
 

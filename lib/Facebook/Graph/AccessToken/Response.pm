@@ -1,12 +1,10 @@
 package Facebook::Graph::AccessToken::Response;
-{
-  $Facebook::Graph::AccessToken::Response::VERSION = '1.0600';
-}
-
+$Facebook::Graph::AccessToken::Response::VERSION = '1.0700';
 use Any::Moose;
 use URI;
 use URI::QueryParam;
 use Ouch;
+use JSON;
 
 has response => (
     is      => 'ro',
@@ -23,7 +21,7 @@ has token => (
             return URI->new('?'.$response->content)->query_param('access_token');
         }
         else {
-            ouch $response->code, 'Could not fetch access token: '.$response->message, $response->request->uri->as_string;
+            ouch $response->code, 'Could not fetch access token: '._retrieve_error_message($response), $response->request->uri->as_string;
         }
     }
 );
@@ -38,10 +36,21 @@ has expires => (
             return URI->new('?'.$response->content)->query_param('expires');
         }
         else {
-            ouch $response->code, 'Could not fetch access token: '.$response->message, $response->request->uri->as_string;
+            ouch $response->code, 'Could not fetch access token: '._retrieve_error_message($response), $response->request->uri->as_string;
         }
     }
 );
+
+sub _retrieve_error_message {
+    my $response = shift;
+    my $content = eval { from_json($response->decoded_content) };
+    if ($@) {
+        return $response->message;
+    }
+    else {
+        return $content->{error}{message};
+    }
+}
 
 no Any::Moose;
 __PACKAGE__->meta->make_immutable;
@@ -52,7 +61,7 @@ Facebook::Graph::AccessToken::Response - The Facebook access token request respo
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 Description
 
@@ -66,7 +75,7 @@ Returns the token string.
 
 =head2 expires ()
 
-Returns the time alotted to this token. If undefined then the token is forever.
+Returns the time allotted to this token. If undefined then the token is forever.
 
 =head2 response ()
 

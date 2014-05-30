@@ -1,8 +1,5 @@
 package Facebook::Graph::Query;
-{
-  $Facebook::Graph::Query::VERSION = '1.0600';
-}
-
+$Facebook::Graph::Query::VERSION = '1.0700';
 use Any::Moose;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
@@ -209,18 +206,18 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 SYNOPSIS
 
  my $fb = Facebook::Graph->new;
  
- my $perl_page = $fb->find('16665510298')
+ my $perl_page = $fb->query->find('16665510298')
     ->include_metadata
     ->request
     ->as_hashref;
  
- my $sarah_bownds = $fb->find('sarahbownds')
+ my $sarah_bownds = $fb->query->find('sarahbownds')
     ->select_fields(qw(id name))
     ->request
     ->as_hashref;
@@ -309,6 +306,7 @@ All events.
 
 All groups.
 
+=back
 
 
 
@@ -326,8 +324,6 @@ They keywords to search by.
 
 See the C<context> param in the C<from> method.
 
-=back
-
 
 
 =head2 limit_results ( amount )
@@ -336,7 +332,7 @@ The result set will only return a certain number of records when this is set. Us
 
 =head2 date_format ( format )
 
-The result set dates will be formated in the defined formats.  Specify the format by reference the PHP date format spec: L<http://php.net/manual/en/function.date.php>. (eg. ->date_format('U')->) Useful for getting epoch for datatime. Returns C<$self> for method chaining.
+The result set dates will be formatted in the defined formats.  Specify the format by reference the PHP date format spec: L<http://php.net/manual/en/function.date.php>. (eg. ->date_format('U')->) Useful for getting epoch for datatime. Returns C<$self> for method chaining.
 
 =head3 amount
 

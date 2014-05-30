@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe2 - Building a Full Web App
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 DESCRIPTION
 
@@ -18,7 +18,7 @@ L<DateTime::Format::ICal> L<Dancer> L<Template> L<Data::ICal> L<XML::FeedPP>
 
 =head2 Assumptions
 
-This recipe assumes that that you have a Facebook (L<http://www.facebook.com>) account.
+This recipe assumes that you have a Facebook (L<http://www.facebook.com>) account.
 
 You'll also have to be able to point a domain name to a server that is accessible from the Internet. DNS and server configuration are way beyond the scope of this document.
 
@@ -38,7 +38,7 @@ Go to L<http://www.facebook.com/developers/createapp.php> or click "Set Up New A
 
 Fill in an application name. The only restriction is that it can't use a Facebook trademark or be similar to official Facebook application names.
 
-Agree to the terms of servce.
+Agree to the terms of service.
 
 Click "Create Application".
 

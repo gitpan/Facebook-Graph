@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook::Recipe3 - Impersonation
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 DESCRIPTION
 
@@ -12,7 +12,7 @@ Building an application that can post as another page under my control.
 
 =head2 Assumptions
 
-We're assuming you've already learned the basics of Facebook::Graph through the other recipies and have already set up your application access token.
+We're assuming you've already learned the basics of Facebook::Graph through the other recipes and have already set up your application access token.
 
 =head1 RECIPE
 

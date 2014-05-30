@@ -1,8 +1,5 @@
 package Facebook::Graph::Publish::Checkin;
-{
-  $Facebook::Graph::Publish::Checkin::VERSION = '1.0600';
-}
-
+$Facebook::Graph::Publish::Checkin::VERSION = '1.0700';
 use Any::Moose;
 extends 'Facebook::Graph::Publish';
 
@@ -98,7 +95,7 @@ Facebook::Graph::Publish::Checkin - Publish a location checkin.
 
 =head1 VERSION
 
-version 1.0600
+version 1.0700
 
 =head1 SYNOPSIS
 
@@ -150,7 +147,7 @@ The id of a page for a place. For example C<222047056390> is the id of Pete's Pi
 
 =head2 set_latitude ( coord )
 
-Sets sets the coords of your location. See also C<set_longitude>
+Sets the coords of your location. See also C<set_longitude>
 
 =head3 coord
 
@@ -159,7 +156,7 @@ The decimal latitude of your current location.
 
 =head2 set_longitude ( coord )
 
-Sets sets the coords of your location. See also C<set_latitude>
+Sets the coords of your location. See also C<set_latitude>
 
 =head3 coord
 
