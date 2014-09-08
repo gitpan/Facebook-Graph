@@ -1,5 +1,5 @@
 package Facebook::Graph;
-$Facebook::Graph::VERSION = '1.0800';
+$Facebook::Graph::VERSION = '1.0801';
 use Any::Moose;
 use MIME::Base64::URLSafe;
 use JSON;
@@ -349,7 +349,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0800
+version 1.0801
 
 =head1 SYNOPSIS
 
