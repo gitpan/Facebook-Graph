@@ -1,5 +1,5 @@
 package Facebook::Graph::Publish;
-$Facebook::Graph::Publish::VERSION = '1.0700';
+$Facebook::Graph::Publish::VERSION = '1.0800';
 use Any::Moose;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
@@ -55,7 +55,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0700
+version 1.0800
 
 =head1 DESCRIPTION
 

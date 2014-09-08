@@ -4,33 +4,33 @@ author:
   - 'JT Smith <jt@plainblack.com>'
 build_requires: {}
 configure_requires:
-  ExtUtils::MakeMaker: 6.30
+  ExtUtils::MakeMaker: '6.30'
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141170'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Facebook-Graph
 no_index:
   directory:
     - author.t
     - eg
 requires:
-  Any::Moose: 0.13
-  AnyEvent::HTTP::LWP::UserAgent: 0.08
-  AnyEvent::TLS: 0
-  DateTime: 0.61
-  DateTime::Format::Strptime: 1.4000
-  JSON: 2.16
-  MIME::Base64::URLSafe: 0.01
-  Ouch: 0.0400
-  Test::More: 0
-  URI: 1.54
+  Any::Moose: '0.13'
+  AnyEvent::HTTP::LWP::UserAgent: '0.08'
+  AnyEvent::TLS: '0'
+  DateTime: '0.61'
+  DateTime::Format::Strptime: '1.4000'
+  JSON: '2.16'
+  MIME::Base64::URLSafe: '0.01'
+  Ouch: '0.0400'
+  Test::More: '0'
+  URI: '1.54'
 resources:
   bugtracker: http://github.com/rizen/Facebook-Graph/issues
   repository: git://github.com/rizen/Facebook-Graph.git
-version: 1.0700
+version: '1.0800'
 x_contributors:
   - 'Adam Hopkins <SirChickenHair@srchulo-aire.local>'
   - 'Andrew Grangaard <granny-github@ofb.net>'
@@ -38,6 +38,7 @@ x_contributors:
   - 'Daisuke Murase <typester@cpan.org>'
   - 'David Steinbrunner <dsteinbrunner@pobox.com>'
   - 'Fayland Lam <fayland@gmail.com>'
+  - 'Guillaume Aubert <aubertg@cpan.org>'
   - 'James Wright <james2vegas@aim.com>'
   - 'Jason Wieland <jwieland@gmail.com>'
   - 'Mark Carey <mark@mt-hacks.com>'
@@ -45,5 +46,6 @@ x_contributors:
   - 'Maroun NAJM <mnajm@cinemoz.com>'
   - 'Sebastien Wernerus <s.wernerus@gmail.com>'
   - 'Tim Heaney <oylenshpeegul@gmail.com>'
+  - 'hurricup <hurricup@gmail.com>'
   - 'mathieu viel <mathieu.viel@linkfluence.net>'
   - 'root <root@li125-92.members.linode.com>'

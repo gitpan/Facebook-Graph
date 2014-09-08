@@ -13,6 +13,7 @@ author.t/publish_event.t
 author.t/publish_like.t
 author.t/publish_link.t
 author.t/publish_note.t
+author.t/publish_post.t
 author.t/publish_to_feed.t
 author.t/rsvp_attending.t
 author.t/rsvp_declined.t
@@ -45,6 +46,7 @@ lib/Facebook/Graph/Cookbook.pod
 lib/Facebook/Graph/Cookbook/Recipe1.pod
 lib/Facebook/Graph/Cookbook/Recipe2.pod
 lib/Facebook/Graph/Cookbook/Recipe3.pod
+lib/Facebook/Graph/Page/Feed.pm
 lib/Facebook/Graph/Picture.pm
 lib/Facebook/Graph/Publish.pm
 lib/Facebook/Graph/Publish/Checkin.pm

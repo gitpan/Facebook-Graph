@@ -4,7 +4,7 @@ Facebook::Graph::Cookbook - A cookbook for Facebook::Graph
 
 =head1 VERSION
 
-version 1.0700
+version 1.0800
 
 =head1 DESCRIPTION
 

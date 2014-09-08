@@ -1,5 +1,5 @@
 package Facebook::Graph::Request;
-$Facebook::Graph::Request::VERSION = '1.0700';
+$Facebook::Graph::Request::VERSION = '1.0800';
 use Any::Moose;
 use JSON;
 use Ouch;
@@ -46,7 +46,7 @@ Facebook::Graph::Request - Handling posts to Facebook Graph.
 
 =head1 VERSION
 
-version 1.0700
+version 1.0800
 
 =head1 DESCRIPTION
 

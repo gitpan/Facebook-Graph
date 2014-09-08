@@ -1,5 +1,5 @@
 package Facebook::Graph::Publish::PageTab;
-$Facebook::Graph::Publish::PageTab::VERSION = '1.0700';
+$Facebook::Graph::Publish::PageTab::VERSION = '1.0800';
 use Any::Moose;
 extends 'Facebook::Graph::Publish';
 
@@ -27,7 +27,7 @@ Facebook::Graph::Publish::PageTab - Add a page tab.
 
 =head1 VERSION
 
-version 1.0700
+version 1.0800
 
 =head1 SYNOPSIS
 

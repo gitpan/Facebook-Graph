@@ -1,5 +1,5 @@
 package Facebook::Graph;
-$Facebook::Graph::VERSION = '1.0700';
+$Facebook::Graph::VERSION = '1.0800';
 use Any::Moose;
 use MIME::Base64::URLSafe;
 use JSON;
@@ -21,6 +21,7 @@ use Facebook::Graph::Publish::RSVPAttending;
 use Facebook::Graph::Publish::RSVPDeclined;
 use Facebook::Graph::Publish::PageTab;
 use Facebook::Graph::BatchRequests;
+use Facebook::Graph::Page::Feed;
 use Ouch;
 
 has app_id => (
@@ -159,6 +160,21 @@ sub add_post {
     }
     return Facebook::Graph::Publish::Post->new( %params );
 }
+
+
+sub add_page_feed 
+{
+	my ($self) = @_;
+	my %params = ( );
+	if ($self->has_access_token) {
+		$params{access_token} = $self->access_token;
+	}
+	if ($self->has_secret) {
+		$params{secret} = $self->secret;
+	}
+	return Facebook::Graph::Page::Feed->new( %params );
+};
+
 
 sub add_photo {
     my ($self, $object_name) = @_;
@@ -333,7 +349,7 @@ Facebook::Graph - A fast and easy way to integrate your apps with Facebook.
 
 =head1 VERSION
 
-version 1.0700
+version 1.0800
 
 =head1 SYNOPSIS
 
