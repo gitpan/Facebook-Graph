@@ -1,13 +1,11 @@
 package Facebook::Graph::Publish::Like;
-$Facebook::Graph::Publish::Like::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::Like::VERSION = '1.0900';
+use Moo;
 extends 'Facebook::Graph::Publish';
 
 use constant object_path => '/likes';
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -15,7 +13,7 @@ Facebook::Graph::Publish::Like - Mark a post as something you like.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

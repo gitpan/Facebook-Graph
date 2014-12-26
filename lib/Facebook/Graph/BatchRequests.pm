@@ -1,6 +1,6 @@
 package Facebook::Graph::BatchRequests;
-$Facebook::Graph::BatchRequests::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::BatchRequests::VERSION = '1.0900';
+use Moo;
 use Ouch;
 use Facebook::Graph::Request;
 
@@ -11,7 +11,7 @@ has access_token => (
 
 has requests => (
     is          => 'rw',
-    isa         => 'ArrayRef',
+    isa         => sub { ouch(442,"$_[0] is not an Array Reference") unless ref $_[0] eq 'ARRAY' },
     default     => sub { [] },
 );
 
@@ -56,8 +56,7 @@ sub request {
     return wantarray ? @$data : $data;
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 =head1 NAME
 
@@ -65,7 +64,7 @@ Facebook::Graph::BatchRequests - Batch Requests
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

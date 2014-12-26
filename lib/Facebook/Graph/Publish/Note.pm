@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish::Note;
-$Facebook::Graph::Publish::Note::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::Note::VERSION = '1.0900';
+use Moo;
 extends 'Facebook::Graph::Publish';
 
 use constant object_path => '/notes';
@@ -41,9 +41,7 @@ around get_post_params => sub {
     return $post;
 };
 
-
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 
 =head1 NAME
@@ -52,7 +50,7 @@ Facebook::Graph::Publish::Note - Add a note to a user's list of notes.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

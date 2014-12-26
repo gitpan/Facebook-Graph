@@ -1,6 +1,6 @@
 package Facebook::Graph::Request;
-$Facebook::Graph::Request::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Request::VERSION = '1.0900';
+use Moo;
 use JSON;
 use Ouch;
 use AnyEvent::HTTP::LWP::UserAgent;
@@ -9,7 +9,7 @@ use Facebook::Graph::Response;
 
 has ua => (
     is      => 'rw',
-    isa     => 'AnyEvent::HTTP::LWP::UserAgent',
+    isa     => sub {ouch(442,"$_[0] is not an HTTP::Response object") unless ref $_[0] eq 'AnyEvent::HTTP::LWP::UserAgent'},
     lazy    => 1,
     default => sub {
         my $ua = AnyEvent::HTTP::LWP::UserAgent->new;
@@ -37,8 +37,7 @@ sub get {
     return $cv;
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 =head1 NAME
 
@@ -46,7 +45,7 @@ Facebook::Graph::Request - Handling posts to Facebook Graph.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 DESCRIPTION
 

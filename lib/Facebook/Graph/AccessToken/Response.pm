@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken::Response;
-$Facebook::Graph::AccessToken::Response::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::AccessToken::Response::VERSION = '1.0900';
+use Moo;
 use URI;
 use URI::QueryParam;
 use Ouch;
@@ -52,8 +52,7 @@ sub _retrieve_error_message {
     }
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 =head1 NAME
 
@@ -61,7 +60,7 @@ Facebook::Graph::AccessToken::Response - The Facebook access token request respo
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 Description
 

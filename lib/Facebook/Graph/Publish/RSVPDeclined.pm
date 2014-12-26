@@ -1,13 +1,11 @@
 package Facebook::Graph::Publish::RSVPDeclined;
-$Facebook::Graph::Publish::RSVPDeclined::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::RSVPDeclined::VERSION = '1.0900';
+use Moo;
 extends 'Facebook::Graph::Publish';
 
 use constant object_path => '/declined';
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -15,7 +13,7 @@ Facebook::Graph::Publish::RSVPDeclined - RSVP declined to an event.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

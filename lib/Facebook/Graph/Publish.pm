@@ -1,6 +1,6 @@
 package Facebook::Graph::Publish;
-$Facebook::Graph::Publish::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::VERSION = '1.0900';
+use Moo;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
 use AnyEvent::HTTP::LWP::UserAgent;
@@ -44,10 +44,7 @@ sub publish {
     return Facebook::Graph::Request->new->post($uri, $self->get_post_params)->recv;
 }
 
-
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -55,7 +52,7 @@ Facebook::Graph::Publish - A base class for publishing various things to faceboo
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 DESCRIPTION
 

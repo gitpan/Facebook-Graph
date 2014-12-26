@@ -1,6 +1,6 @@
 package Facebook::Graph::Picture;
-$Facebook::Graph::Picture::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Picture::VERSION = '1.0900';
+use Moo;
 with 'Facebook::Graph::Role::Uri';
 
 has type => (
@@ -10,7 +10,7 @@ has type => (
 
 has object_name => (
     is          => 'rw',
-    default     => '',
+    default     => sub {''},
 );
 
 sub get_small {
@@ -44,9 +44,7 @@ sub uri_as_string {
 }
 
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -54,7 +52,7 @@ Facebook::Graph::Picture - Get the URI for the picture of any object.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

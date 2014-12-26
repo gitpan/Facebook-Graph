@@ -20,18 +20,18 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Facebook::Graph",
   "PREREQ_PM" => {
-    "Any::Moose" => "0.13",
     "AnyEvent::HTTP::LWP::UserAgent" => "0.08",
     "AnyEvent::TLS" => 0,
     "DateTime" => "0.61",
     "DateTime::Format::Strptime" => "1.4000",
     "JSON" => "2.16",
     "MIME::Base64::URLSafe" => "0.01",
+    "Moo" => 0,
     "Ouch" => "0.0400",
     "Test::More" => 0,
     "URI" => "1.54"
   },
-  "VERSION" => "1.0801",
+  "VERSION" => "1.0900",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -39,13 +39,13 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Any::Moose" => "0.13",
   "AnyEvent::HTTP::LWP::UserAgent" => "0.08",
   "AnyEvent::TLS" => 0,
   "DateTime" => "0.61",
   "DateTime::Format::Strptime" => "1.4000",
   "JSON" => "2.16",
   "MIME::Base64::URLSafe" => "0.01",
+  "Moo" => 0,
   "Ouch" => "0.0400",
   "Test::More" => 0,
   "URI" => "1.54"

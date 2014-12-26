@@ -1,6 +1,6 @@
 package Facebook::Graph::Query;
-$Facebook::Graph::Query::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Query::VERSION = '1.0900';
+use Moo;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
 use URI::Escape;
@@ -63,7 +63,7 @@ has search_type => (
 
 has object_name => (
     is          => 'rw',
-    default     => '',
+    default     => sub {''},
 );
 
 has until => (
@@ -196,9 +196,7 @@ sub request {
     return Facebook::Graph::Request->new->get($self->uri_as_string)->recv;
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -206,7 +204,7 @@ Facebook::Graph::Query - Simple and fast searching and fetching of Facebook data
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

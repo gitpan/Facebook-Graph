@@ -1,12 +1,12 @@
 package Facebook::Graph::Response;
-$Facebook::Graph::Response::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Response::VERSION = '1.0900';
+use Moo;
 use JSON;
 use Ouch;
 
 has response => (
     is      => 'rw',
-    isa     => 'HTTP::Response',
+    isa     => sub {ouch(442,"$_[0] is not an HTTP::Response object") unless ref $_[0] eq 'HTTP::Response'},
     required=> 1,
 );
 
@@ -48,8 +48,7 @@ has as_hashref => (
     },
 );
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 =head1 NAME
 
@@ -57,7 +56,7 @@ Facebook::Graph::Response - Handling of a Facebook::Graph response documents.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 DESCRIPTION
 

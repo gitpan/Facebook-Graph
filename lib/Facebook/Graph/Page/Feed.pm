@@ -1,8 +1,8 @@
 package Facebook::Graph::Page::Feed;
-$Facebook::Graph::Page::Feed::VERSION = '1.0801';
+$Facebook::Graph::Page::Feed::VERSION = '1.0900';
 use strict;
 $Facebook::Graph::Page::Feed::VERSION = '1.0700';
-use Any::Moose;
+use Moo;
 extends 'Facebook::Graph::Publish';
 
 has page_id => (
@@ -125,9 +125,7 @@ around get_post_params => sub {
 	return $post;
 };
 
-
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 =head1 NAME
 
@@ -135,7 +133,7 @@ Facebook::Graph::Page::Feed - Add a post to a Facebook page.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

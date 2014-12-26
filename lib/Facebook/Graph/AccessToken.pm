@@ -1,6 +1,6 @@
 package Facebook::Graph::AccessToken;
-$Facebook::Graph::AccessToken::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::AccessToken::VERSION = '1.0900';
+use Moo;
 use Facebook::Graph::AccessToken::Response;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
@@ -70,9 +70,7 @@ sub request {
     );
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -81,7 +79,7 @@ Facebook::Graph::AccessToken - Acquire an access token from Facebook.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

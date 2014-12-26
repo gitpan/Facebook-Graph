@@ -1,13 +1,11 @@
 package Facebook::Graph::Publish::RSVPAttending;
-$Facebook::Graph::Publish::RSVPAttending::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::RSVPAttending::VERSION = '1.0900';
+use Moo;
 extends 'Facebook::Graph::Publish';
 
 use constant object_path => '/attending';
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -15,7 +13,7 @@ Facebook::Graph::Publish::RSVPAttending - RSVP attending to an event.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

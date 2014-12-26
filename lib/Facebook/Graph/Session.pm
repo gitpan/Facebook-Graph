@@ -1,6 +1,6 @@
 package Facebook::Graph::Session;
-$Facebook::Graph::Session::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Session::VERSION = '1.0900';
+use Moo;
 use Facebook::Graph::Request;
 with 'Facebook::Graph::Role::Uri';
 
@@ -37,9 +37,7 @@ sub request {
     return Facebook::Graph::Request->new->get($self->uri_as_string)->recv;
 }
 
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
-
+1;
 
 =head1 NAME
 
@@ -48,7 +46,7 @@ Facebook::Graph::Session - Convert old API sessions into Graph API access_tokens
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 

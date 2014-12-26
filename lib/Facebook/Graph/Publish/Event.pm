@@ -1,6 +1,7 @@
 package Facebook::Graph::Publish::Event;
-$Facebook::Graph::Publish::Event::VERSION = '1.0801';
-use Any::Moose;
+$Facebook::Graph::Publish::Event::VERSION = '1.0900';
+use Moo;
+use Ouch;
 extends 'Facebook::Graph::Publish';
 use DateTime;
 use DateTime::Format::Strptime;
@@ -42,7 +43,7 @@ sub set_location {
 
 has start_time => (
     is          => 'rw',
-    isa         => 'DateTime',
+    isa         => sub {ouch(442,"$_[0] is not an HTTP::Response object") unless ref $_[0] eq 'DateTime'},
     predicate   => 'has_start_time',
 );
 
@@ -54,7 +55,7 @@ sub set_start_time {
 
 has end_time => (
     is          => 'rw',
-    isa         => 'DateTime',
+    isa         => sub {ouch(442,"$_[0] is not an HTTP::Response object") unless ref $_[0] eq 'DateTime'},
     predicate   => 'has_end_time',
 );
 
@@ -91,9 +92,7 @@ around get_post_params => sub {
     return $post;
 };
 
-
-no Any::Moose;
-__PACKAGE__->meta->make_immutable;
+1;
 
 
 =head1 NAME
@@ -102,7 +101,7 @@ Facebook::Graph::Publish::Event - Add an event.
 
 =head1 VERSION
 
-version 1.0801
+version 1.0900
 
 =head1 SYNOPSIS
 
